@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseBot | Cel mai avansat bot de Discord</title>
+  <style>
+    /* Reset & Bază */
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: radial-gradient(circle at top, #1d2340 0%, #10162c 45%, #080b16 100%);
+      color: #edf3ff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 8. Scrollbar Customizat */
+    ::-webkit-scrollbar { width: 12px; }
+    ::-webkit-scrollbar-track { background: #080b16; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #8cf8ff, #8b79ff);
+      border-radius: 10px;
+      border: 3px solid #080b16;
+    }
+
+    /* 6. Canvas Background (Doar nativ) */
+    #bgCanvas {
+      position: fixed;
+      top: 0; left: 0; 
+      width: 100vw; height: 100vh;
+      z-index: -1;
+    }
+
+    /* Navbar & 2. Pagini */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(14, 18, 34, 0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    /* 7. Aceeași temă gradient */
+    .logo { 
+      font-size: 26px; 
+      font-weight: 800; 
+      background: linear-gradient(135deg, #8cf8ff 0%, #61c7ff 45%, #8b79ff 100%); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+    }
+    
+    nav { display: flex; gap: 25px; }
+    nav a { 
+      color: #b7c2e6; 
+      text-decoration: none; 
+      font-weight: 500; 
+      transition: color 0.2s, text-shadow 0.2s; 
+    }
+    nav a:hover { 
+      color: #8cf8ff;
+      text-shadow: 0 0 8px rgba(140, 248, 255, 0.4);
+    }
+
+    /* 9. Steag mișcător pentru Limbă (Sus Dreapta) */
+    .lang-selector {
+      position: relative;
+      cursor: pointer;
+      animation: floatLang 3s ease-in-out infinite;
+      font-size: 24px;
+      padding: 5px;
+    }
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      right: 0; top: 120%;
+      background: rgba(14, 18, 34, 0.95);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 10px;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 80px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .lang-selector:hover .lang-dropdown { display: flex; }
+    .lang-dropdown span { 
+      font-size: 16px; 
+      padding: 8px; 
+      border-radius: 8px; 
+      transition: background 0.2s; 
+      color: #b7c2e6;
+      display: flex; gap: 8px; align-items: center;
+    }
+    .lang-dropdown span:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+    /* 5. Main Content (Home) */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 5vh;
+    }
+    
+    .hero-card {
+      background: rgba(14, 18, 34, 0.6);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 50px 40px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.42);
+      backdrop-filter: blur(12px);
+      max-width: 650px;
+      animation: fadeIn 1s ease-out;
+    }
+    
+    h1 { font-size: clamp(36px, 5vw, 52px); margin-bottom: 15px; letter-spacing: 0.02em; }
+    p { color: #b7c2e6; line-height: 1.6; margin-bottom: 35px; font-size: 18px; }
+
+    /* Butoane */
+    .actions { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      text-decoration: none; display: inline-block;
+      border-radius: 14px; padding: 16px 28px; font-size: 16px; font-weight: 700;
+      transition: transform .15s ease, box-shadow .15s ease;
+      cursor: pointer; border: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .primary { 
+      color: #04152a; 
+      background: linear-gradient(135deg, #8cf8ff 0%, #61c7ff 45%, #8b79ff 100%); 
+      box-shadow: 0 4px 20px rgba(97, 199, 255, 0.25); 
+    }
+    .secondary { 
+      color: #edf3ff; 
+      background: rgba(255,255,255,0.07); 
+      border: 1px solid rgba(255,255,255,0.1); 
+    }
+    .secondary:hover { background: rgba(255,255,255,0.12); }
+
+    /* 4. Emoji Mișcător Colț Stânga Jos */
+    .floating-discord {
+      position: fixed;
+      bottom: 30px; left: 30px;
+      font-size: 32px;
+      text-decoration: none;
+      animation: bounceDiscord 2.5s infinite;
+      z-index: 100;
+      background: rgba(14, 18, 34, 0.8);
+      border: 1px solid rgba(140, 248, 255, 0.2);
+      border-radius: 50%;
+      width: 65px; height: 65px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      transition: border 0.3s;
+    }
+    .floating-discord:hover { border-color: #8cf8ff; }
+
+    /* 3. Footer */
+    footer {
+      background: rgba(10, 13, 25, 0.8);
+      padding: 25px; text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 25px;
+      backdrop-filter: blur(5px);
+    }
+    footer a { color: #8c9dc7; text-decoration: none; font-size: 14px; transition: color 0.2s; font-weight: 500; }
+    footer a:hover { color: #8cf8ff; }
+
+    /* Keyframes Animatii */
+    @keyframes floatLang {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-4px) rotate(5deg); }
+    }
+    @keyframes bounceDiscord {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-12px); }
+      60% { transform: translateY(-6px); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bgCanvas"></canvas>
+
+  <header>
+    <div class="logo">PulseBot</div>
+    <nav>
+      <a href="#acasa">Acasă</a>
+      <a href="#comenzi">Comenzi</a>
+      <a href="#despre">Despre</a>
+      <a href="#premium">Premium</a>
+    </nav>
+    
+    <div class="lang-selector" title="Selectează limba">
+      🇷🇴
+      <div class="lang-dropdown">
+        <span>🇷🇴 RO</span>
+        <span>🇬🇧 EN</span>
+        <span>🇪🇸 ES</span>
+        <span>🇫🇷 FR</span>
+        <span>🇩🇪 DE</span>
+        <span>🇮🇹 IT</span>
+        <span>🇵🇹 PT</span>
+        <span>🇷🇺 RU</span>
+        <span>🇯🇵 JP</span>
+        <span>🇸🇦 AR</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="acasa">
+    <div class="hero-card">
+      <h1>PulseBot</h1>
+      <p>Cel mai avansat și epic sistem pentru comunitatea ta. Gestionează totul simplu și eficient cu un bot construit pentru performanță.</p>
+      <div class="actions">
+        <a href="#" class="btn primary">Invită Botul</a>
+        <a href="#" class="btn secondary">Join Support Server</a>
+      </div>
+    </div>
+  </main>
+
+  <a href="#" class="floating-discord" title="Alătură-te serverului de suport!">
+    👾
+  </a>
+
+  <footer>
+    <a href="#">Discord Bot Link</a>
+    <a href="#">Termeni de Utilizare (TOS)</a>
+    <a href="#">Politica de Confidențialitate</a>
+  </footer>
+
+  <script>
+    // Configuratie exclusiv Canvas pentru animatia de stele/fulgi de pe fundal
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Generam un set limitat de particule descrise prin index [150\]
+    const particles = [];
+    const numParticles = 150;
+
+    for (let i = 0; i < numParticles; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5 + 0.5,
+        speedY: Math.random() * 0.4 + 0.1,
+        opacity: Math.random()
+      });
+    }
+
+    function animateBg() {
+      // Curatam tot canvas-ul la fiecare frame
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < particles.length; i++) {
+        let p = particles[i];
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(140, 248, 255, ${p.opacity})`;
+        ctx.fill();
+
+        // Miscare lenta in sus (efect de particule magice)
+        p.y -= p.speedY; 
+        
+        // Resetam pozitia cand ies din ecran
+        if (p.y < 0) {
+          p.y = canvas.height;
+          p.x = Math.random() * canvas.width;
+        }
+
+        // Efect de pulsatie a opacitatii
+        p.opacity += (Math.random() - 0.5) * 0.05;
+        if (p.opacity < 0.1) p.opacity = 0.1;
+        if (p.opacity > 0.8) p.opacity = 0.8;
+      }
+
+      requestAnimationFrame(animateBg);
+    }
+
+    animateBg();
+  </script>
+</body>
+</html>
