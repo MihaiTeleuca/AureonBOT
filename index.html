@@ -9,11 +9,7 @@
 
   <style>
     /* Reset & Bază */
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: Inter, Arial, sans-serif;
       background: radial-gradient(circle at top, #1d2340 0%, #10162c 45%, #080b16 100%);
@@ -24,7 +20,7 @@
       flex-direction: column;
     }
 
-    /* Custom Scrollbar */
+    /* Scrollbar */
     ::-webkit-scrollbar { width: 12px; }
     ::-webkit-scrollbar-track { background: #080b16; }
     ::-webkit-scrollbar-thumb {
@@ -43,206 +39,168 @@
 
     /* Navbar */
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background: rgba(14, 18, 34, 0.7);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 40px; background: rgba(14, 18, 34, 0.7);
+      backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky; top: 0; z-index: 100;
     }
-    
     .logo { 
-      font-size: 26px; 
-      font-weight: 800; 
+      font-size: 26px; font-weight: 800; 
       background: linear-gradient(135deg, #8cf8ff 0%, #61c7ff 45%, #8b79ff 100%); 
-      -webkit-background-clip: text; 
-      -webkit-text-fill-color: transparent; 
-      cursor: pointer;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; cursor: pointer;
     }
-    
     nav { display: flex; gap: 30px; }
     nav a { 
-      color: #b7c2e6; 
-      text-decoration: none; 
-      font-weight: 600; 
-      font-size: 16px;
+      color: #b7c2e6; text-decoration: none; font-weight: 600; font-size: 16px;
       transition: all 0.3s ease; 
     }
-    
-    /* Meniu cu Gradient pe Hover */
     nav a:hover { 
       background: linear-gradient(135deg, #8cf8ff 0%, #61c7ff 45%, #8b79ff 100%);
-      -webkit-background-clip: text; 
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       text-shadow: 0 0 15px rgba(140, 248, 255, 0.3);
     }
 
-    /* Selector de limbă */
+    /* Language Selector */
     .lang-selector {
-      position: relative;
-      cursor: pointer;
+      position: relative; cursor: pointer;
       animation: floatLang 3s ease-in-out infinite;
-      font-size: 24px;
-      padding: 5px;
-      user-select: none;
+      font-size: 24px; padding: 5px; user-select: none;
     }
     .lang-dropdown {
-      display: none;
-      position: absolute;
-      right: 0; top: 120%;
-      background: rgba(14, 18, 34, 0.95);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 10px;
-      flex-direction: column;
-      gap: 4px;
-      min-width: 100px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: none; position: absolute; right: 0; top: 120%;
+      background: rgba(14, 18, 34, 0.95); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 10px; flex-direction: column; gap: 4px;
+      min-width: 100px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
     .lang-selector:hover .lang-dropdown { display: flex; }
     .lang-dropdown span { 
-      font-size: 15px; 
-      padding: 8px 12px; 
-      border-radius: 8px; 
-      transition: background 0.2s; 
-      color: #b7c2e6;
-      display: flex; gap: 10px; align-items: center;
-      font-weight: 500;
+      font-size: 15px; padding: 8px 12px; border-radius: 8px; transition: background 0.2s; 
+      color: #b7c2e6; display: flex; gap: 10px; align-items: center; font-weight: 500;
     }
     .lang-dropdown span:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
-    /* Conținut Principal */
+    /* General Layout */
     main { flex: 1; display: block; }
-    
+    section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
+    .section-title { font-size: 36px; margin-bottom: 20px; }
+    .section-desc { color: #8c9dc7; font-size: 18px; margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
     /* Hero Section */
-    .hero-section {
-      min-height: 75vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 20px;
-    }
-    
+    .hero-section { min-height: 75vh; display: flex; align-items: center; justify-content: center; }
     .hero-card {
-      background: rgba(14, 18, 34, 0.6);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 24px;
-      padding: 60px 50px;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.42);
-      backdrop-filter: blur(12px);
-      max-width: 700px;
-      animation: fadeIn 1s ease-out;
+      background: rgba(14, 18, 34, 0.6); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px; padding: 60px 50px; box-shadow: 0 24px 80px rgba(0,0,0,0.42);
+      backdrop-filter: blur(12px); max-width: 700px; animation: fadeIn 1s ease-out;
     }
-    
-    h1 { font-size: clamp(34px, 5vw, 48px); margin-bottom: 20px; letter-spacing: 0.01em; line-height: 1.2; }
+    .hero-card h1 { font-size: clamp(34px, 5vw, 48px); margin-bottom: 20px; line-height: 1.2; }
     .hero-card p { color: #b7c2e6; line-height: 1.7; margin-bottom: 40px; font-size: 18px; }
 
-    /* Butoane */
+    /* Buttons */
     .actions { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
     .btn {
-      text-decoration: none; display: inline-block;
-      border-radius: 14px; padding: 18px 32px; font-size: 16px; font-weight: 700;
-      transition: transform .15s ease, box-shadow .15s ease;
-      cursor: pointer; border: none;
+      text-decoration: none; display: inline-block; border-radius: 14px; 
+      padding: 18px 32px; font-size: 16px; font-weight: 700;
+      transition: transform .15s ease, box-shadow .15s ease; cursor: pointer; border: none;
     }
     .btn:hover { transform: translateY(-3px); }
     .primary { 
-      color: #04152a; 
-      background: linear-gradient(135deg, #8cf8ff 0%, #61c7ff 45%, #8b79ff 100%); 
+      color: #04152a; background: linear-gradient(135deg, #8cf8ff 0%, #61c7ff 45%, #8b79ff 100%); 
       box-shadow: 0 8px 25px rgba(97, 199, 255, 0.25); 
     }
     .secondary { 
-      color: #edf3ff; 
-      background: rgba(255,255,255,0.07); 
-      border: 1px solid rgba(255,255,255,0.15); 
+      color: #edf3ff; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); 
     }
     .secondary:hover { background: rgba(255,255,255,0.12); }
 
-    /* Floating Discord Widget */
-    .floating-discord {
-      position: fixed;
-      bottom: 30px; left: 30px;
-      font-size: 32px;
-      text-decoration: none;
-      animation: bounceDiscord 2.5s infinite;
-      z-index: 100;
-      background: rgba(14, 18, 34, 0.8);
-      border: 1px solid rgba(140, 248, 255, 0.2);
-      border-radius: 50%;
-      width: 65px; height: 65px;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-      transition: border 0.3s;
+    /* Stats Section */
+    .stats-wrapper {
+      background: rgba(0, 0, 0, 0.25); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-    .floating-discord:hover { border-color: #8cf8ff; }
-
-    /* Secțiune Statistici */
     .stats-section {
-      display: flex; justify-content: center; gap: 80px; flex-wrap: wrap;
-      padding: 60px 20px;
-      background: rgba(0, 0, 0, 0.25);
-      border-top: 1px solid rgba(255,255,255,0.05);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      text-align: center;
+      display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; padding: 60px 20px;
     }
     .stat-item h3 {
-      font-size: 48px;
-      background: linear-gradient(135deg, #8cf8ff 0%, #61c7ff 45%, #8b79ff 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
+      font-size: 48px; background: linear-gradient(135deg, #8cf8ff 0%, #61c7ff 45%, #8b79ff 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px;
     }
     .stat-item p { color: #8c9dc7; font-size: 16px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
 
-    /* Secțiune Facilități */
-    .features-section {
-      padding: 100px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
+    /* How it works (Steps) */
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 50px; }
+    .step-item { text-align: center; }
+    .step-number {
+      width: 60px; height: 60px; margin: 0 auto 20px; background: rgba(140, 248, 255, 0.1);
+      border: 1px solid rgba(140, 248, 255, 0.3); border-radius: 50%; display: flex; align-items: center; 
+      justify-content: center; font-size: 24px; font-weight: bold; color: #8cf8ff;
     }
-    .features-section h2 { font-size: 32px; margin-bottom: 60px; }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
+    .step-item h3 { font-size: 20px; margin-bottom: 15px; }
+    .step-item p { color: #8c9dc7; line-height: 1.6; }
+
+    /* Features Section */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
     .feature-card {
-      background: rgba(14, 18, 34, 0.5);
-      padding: 40px 30px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      transition: transform 0.3s ease, border-color 0.3s ease;
-      text-align: left;
+      background: rgba(14, 18, 34, 0.5); padding: 40px 30px; border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, border-color 0.3s ease; text-align: left;
     }
-    .feature-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(140, 248, 255, 0.3);
-    }
+    .feature-card:hover { transform: translateY(-10px); border-color: rgba(140, 248, 255, 0.3); }
     .feature-icon { font-size: 45px; margin-bottom: 20px; }
     .feature-card h3 { font-size: 22px; margin-bottom: 15px; }
     .feature-card p { color: #8c9dc7; line-height: 1.6; font-size: 15px; }
 
-    /* Footer Avansat & Profesional */
+    /* Demo / Mockup Section */
+    .demo-box {
+      background: #313338; border-radius: 8px; padding: 20px; text-align: left;
+      max-width: 600px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.05); font-family: 'gg sans', 'Noto Sans', Arial, sans-serif;
+    }
+    .msg-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .msg-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #8cf8ff, #8b79ff); }
+    .msg-name { font-weight: bold; color: #fff; display: flex; align-items: center; gap: 6px; }
+    .bot-tag { background: #5865F2; font-size: 10px; padding: 2px 4px; border-radius: 3px; text-transform: uppercase; }
+    .msg-time { font-size: 12px; color: #949ba4; font-weight: normal; }
+    .msg-content { color: #dbdee1; padding-left: 50px; line-height: 1.5; font-size: 15px; }
+    .msg-embed {
+      margin-top: 10px; margin-left: 50px; background: #2b2d31; border-left: 4px solid #8cf8ff;
+      padding: 15px; border-radius: 4px;
+    }
+
+    /* FAQ Section */
+    .faq-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 800px; margin: 0 auto; }
+    .faq-item {
+      background: rgba(14, 18, 34, 0.5); padding: 25px 30px; border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.05); text-align: left;
+    }
+    .faq-item h4 { font-size: 18px; margin-bottom: 10px; color: #fff; }
+    .faq-item p { color: #8c9dc7; line-height: 1.6; font-size: 15px; }
+
+    /* Final CTA */
+    .cta-box {
+      background: linear-gradient(135deg, rgba(140, 248, 255, 0.1), rgba(139, 121, 255, 0.1));
+      border: 1px solid rgba(140, 248, 255, 0.2); border-radius: 24px; padding: 60px 40px;
+      margin-top: 50px; text-align: center;
+    }
+
+    /* Floating Discord Widget */
+    .floating-discord {
+      position: fixed; bottom: 30px; left: 30px; font-size: 32px; text-decoration: none;
+      animation: bounceDiscord 2.5s infinite; z-index: 100; background: rgba(14, 18, 34, 0.8);
+      border: 1px solid rgba(140, 248, 255, 0.2); border-radius: 50%; width: 65px; height: 65px;
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      transition: border 0.3s;
+    }
+    .floating-discord:hover { border-color: #8cf8ff; }
+
+    /* Footer */
     footer {
-      background: rgba(10, 13, 25, 0.95);
-      border-top: 1px solid rgba(140, 248, 255, 0.15);
-      padding: 70px 40px 30px;
-      margin-top: 50px;
+      background: rgba(10, 13, 25, 0.95); border-top: 1px solid rgba(140, 248, 255, 0.15);
+      padding: 70px 40px 30px; margin-top: 50px;
     }
     .footer-container {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px;
+      max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px;
       padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-    @media (max-width: 768px) {
-      .footer-container { grid-template-columns: 1fr; text-align: center; }
-    }
+    @media (max-width: 768px) { .footer-container { grid-template-columns: 1fr; text-align: center; } }
     .footer-brand h2 {
        background: linear-gradient(135deg, #8cf8ff 0%, #61c7ff 45%, #8b79ff 100%); 
        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -250,32 +208,17 @@
     }
     .footer-brand p { color: #8c9dc7; line-height: 1.6; max-width: 400px; font-size: 15px; }
     @media (max-width: 768px) { .footer-brand p { margin: 0 auto; } }
-
     .footer-links h4 { color: #fff; margin-bottom: 25px; font-size: 18px; font-weight: 600; }
-    .footer-links ul { list-style: none; padding: 0; }
+    .footer-links ul { list-style: none; }
     .footer-links li { margin-bottom: 15px; }
     .footer-links a { color: #8c9dc7; text-decoration: none; transition: color 0.3s; font-weight: 500; font-size: 15px; }
     .footer-links a:hover { color: #8cf8ff; }
-    
-    .footer-bottom { 
-      text-align: center; padding-top: 30px; font-size: 14px; color: #5a668a; 
-      display: flex; flex-direction: column; gap: 10px; align-items: center;
-    }
+    .footer-bottom { text-align: center; padding-top: 30px; font-size: 14px; color: #5a668a; display: flex; flex-direction: column; gap: 10px; align-items: center; }
 
-    /* Animații */
-    @keyframes floatLang {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-4px) rotate(5deg); }
-    }
-    @keyframes bounceDiscord {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-12px); }
-      60% { transform: translateY(-6px); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    /* Animations */
+    @keyframes floatLang { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-4px) rotate(5deg); } }
+    @keyframes bounceDiscord { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-12px); } 60% { transform: translateY(-6px); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
@@ -290,9 +233,7 @@
       <a href="#about" data-i18n="navAbout">About</a>
       <a href="#premium" data-i18n="navPremium">Premium</a>
     </nav>
-    
-    <div class="lang-selector" id="current-lang-flag" title="Choose Language">
-      🇺🇸
+    <div class="lang-selector" id="current-lang-flag" title="Choose Language">🇺🇸 
       <div class="lang-dropdown" id="lang-dropdown-list">
         <span data-lang="en">🇺🇸 EN</span>
         <span data-lang="ro">🇷🇴 RO</span>
@@ -310,6 +251,7 @@
 
   <main id="home">
     
+    <!-- 1. Hero -->
     <section class="hero-section">
       <div class="hero-card">
         <h1 data-i18n="heroTitle">A Helping Hand for Your Community</h1>
@@ -321,47 +263,112 @@
       </div>
     </section>
 
-    <section class="stats-section">
-      <div class="stat-item">
-        <h3>15K+</h3>
-        <p data-i18n="statServers">Servers</p>
-      </div>
-      <div class="stat-item">
-        <h3>2.5M</h3>
-        <p data-i18n="statUsers">Active Users</p>
-      </div>
-      <div class="stat-item">
-        <h3>99.9%</h3>
-        <p data-i18n="statUptime">Uptime</p>
+    <!-- 2. Stats -->
+    <div class="stats-wrapper">
+      <section class="stats-section" style="padding: 60px 20px;">
+        <div class="stat-item"><h3>15K+</h3><p data-i18n="statServers">Servers</p></div>
+        <div class="stat-item"><h3>2.5M</h3><p data-i18n="statUsers">Active Users</p></div>
+        <div class="stat-item"><h3>99.9%</h3><p data-i18n="statUptime">Uptime</p></div>
+      </section>
+    </div>
+
+    <!-- 3. Cum funcționează (Nou) -->
+    <section id="about">
+      <h2 class="section-title" data-i18n="stepsTitle">Getting started is easy</h2>
+      <p class="section-desc" data-i18n="stepsDesc">You don't need technical skills. Setting up PulseBot takes less than two minutes.</p>
+      <div class="steps-grid">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <h3 data-i18n="step1Title">Invite the Bot</h3>
+          <p data-i18n="step1Desc">Click the invite button and authorize the bot for your server.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <h3 data-i18n="step2Title">Quick Setup</h3>
+          <p data-i18n="step2Desc">Use simple commands to set up your preferences.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <h3 data-i18n="step3Title">Relax & Enjoy</h3>
+          <p data-i18n="step3Desc">Let PulseBot keep your server safe and entertaining.</p>
+        </div>
       </div>
     </section>
 
-    <section class="features-section" id="about">
-      <h2 data-i18n="featTitle">What PulseBot brings to your server</h2>
+    <!-- 4. Features -->
+    <section>
+      <h2 class="section-title" data-i18n="featTitle">What PulseBot brings to your server</h2>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">🛡️</div>
           <h3 data-i18n="feat1Title">Server Management</h3>
-          <p data-i18n="feat1Desc">Simple moderation tools and logs to keep your community safe and organized without complex setups.</p>
+          <p data-i18n="feat1Desc">Simple moderation tools and logs to keep your community safe and organized.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🎵</div>
           <h3 data-i18n="feat2Title">Music Channels</h3>
-          <p data-i18n="feat2Desc">Share and listen to high-quality tracks with your friends in voice channels, stable and easy to control.</p>
+          <p data-i18n="feat2Desc">Share and listen to high-quality tracks with your friends in voice channels.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">⚙️</div>
           <h3 data-i18n="feat3Title">Tailored for You</h3>
-          <p data-i18n="feat3Desc">Toggle modules on or off based on your server's style. You decide exactly what features you want to use.</p>
+          <p data-i18n="feat3Desc">Toggle modules on or off based on your server's style.</p>
         </div>
+      </div>
+    </section>
+
+    <!-- 5. Demo Comenzi (Nou) -->
+    <section id="commands">
+      <h2 class="section-title" data-i18n="cmdTitle">Familiar and Intuitive</h2>
+      <p class="section-desc" data-i18n="cmdDesc">Fully integrated with Discord's slash commands for a seamless experience.</p>
+      
+      <div class="demo-box">
+        <div class="msg-header">
+          <div class="msg-avatar"></div>
+          <span class="msg-name">PulseBot <span class="bot-tag">✓ BOT</span> <span class="msg-time">Today at 14:30</span></span>
+        </div>
+        <div class="msg-content">
+          <strong style="color:#8cf8ff">/play</strong> track: <em>Lofi chill hip hop</em>
+        </div>
+        <div class="msg-embed">
+          <strong style="color: #fff; display:block; margin-bottom: 5px;">🎵 Now Playing</strong>
+          <span style="color: #b7c2e6; font-size: 14px;">Lofi chill hip hop beats to relax/study to</span><br>
+          <span style="color: #949ba4; font-size: 12px; margin-top: 10px; display:inline-block;">Requested by @User • Volume: 100%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FAQ (Nou) -->
+    <section>
+      <h2 class="section-title" data-i18n="faqTitle">Common Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4 data-i18n="faq1Q">Is PulseBot free to use?</h4>
+          <p data-i18n="faq1A">Yes! The core features like moderation and standard music are completely free for any community.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-i18n="faq2Q">Is my server data safe?</h4>
+          <p data-i18n="faq2A">We value your privacy. We only store the basic settings required for the bot to function, securely.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-i18n="faq3Q">Can I suggest a new feature?</h4>
+          <p data-i18n="faq3A">Absolutely. We love hearing from users. Join our support server and let us know what you need!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Bottom CTA (Nou) -->
+    <section style="padding-top: 20px;">
+      <div class="cta-box">
+        <h2 style="font-size: 32px; margin-bottom: 15px;" data-i18n="ctaTitle">Ready to upgrade your server?</h2>
+        <p style="color: #b7c2e6; margin-bottom: 30px; font-size: 18px;" data-i18n="ctaDesc">Join thousands of happy communities using PulseBot today.</p>
+        <a href="#" class="btn primary" data-i18n="inviteBtn">Add to Discord</a>
       </div>
     </section>
 
   </main>
 
-  <a href="#" class="floating-discord" title="Join our Support Server!">
-    👾
-  </a>
+  <a href="#" class="floating-discord" title="Join our Support Server!">👾</a>
 
   <footer>
     <div class="footer-container">
@@ -394,163 +401,232 @@
   </footer>
 
   <script>
-    // ==========================================
-    // DICTIONAR DE TRADUCERI (Uman, Natural, Modest)
-    // ==========================================
+    // --- 1. Dictionar Complet Traduceri ---
     const translations = {
       en: {
         navHome: "Home", navCommands: "Commands", navAbout: "About", navPremium: "Premium",
-        heroTitle: "A Helping Hand for Your Community",
-        heroDesc: "Manage your Discord server with easy-to-use tools for moderation, music, and setup. Built to be simple, reliable, and close to your community's needs.",
+        heroTitle: "A Helping Hand for Your Community", heroDesc: "Manage your Discord server with easy-to-use tools for moderation, music, and setup. Built to be simple, reliable, and close to your community's needs.",
         inviteBtn: "Add to Discord", supportBtn: "Support Server",
         statServers: "Servers", statUsers: "Active Users", statUptime: "Uptime",
+        stepsTitle: "Getting started is easy", stepsDesc: "You don't need technical skills. Setting up PulseBot takes less than two minutes.",
+        step1Title: "Invite the Bot", step1Desc: "Click the invite button and authorize the bot for your server.",
+        step2Title: "Quick Setup", step2Desc: "Use simple commands to set up your preferences.",
+        step3Title: "Relax & Enjoy", step3Desc: "Let PulseBot keep your server safe and entertaining.",
         featTitle: "What PulseBot brings to your server",
-        feat1Title: "Server Management", feat1Desc: "Simple moderation tools and logs to keep your community safe and organized without complex setups.",
-        feat2Title: "Music Channels", feat2Desc: "Share and listen to high-quality tracks with your friends in voice channels, stable and easy to control.",
-        feat3Title: "Tailored for You", feat3Desc: "Toggle modules on or off based on your server's style. You decide exactly what features you want to use.",
+        feat1Title: "Server Management", feat1Desc: "Simple moderation tools and logs to keep your community safe and organized.",
+        feat2Title: "Music Channels", feat2Desc: "Share and listen to high-quality tracks with your friends in voice channels.",
+        feat3Title: "Tailored for You", feat3Desc: "Toggle modules on or off based on your server's style.",
+        cmdTitle: "Familiar and Intuitive", cmdDesc: "Fully integrated with Discord's slash commands for a seamless experience.",
+        faqTitle: "Common Questions",
+        faq1Q: "Is PulseBot free to use?", faq1A: "Yes! The core features like moderation and standard music are completely free for any community.",
+        faq2Q: "Is my server data safe?", faq2A: "We value your privacy. We only store the basic settings required for the bot to function, securely.",
+        faq3Q: "Can I suggest a new feature?", faq3A: "Absolutely. We love hearing from users. Join our support server and let us know what you need!",
+        ctaTitle: "Ready to upgrade your server?", ctaDesc: "Join thousands of happy communities using PulseBot today.",
         footerDesc: "Supporting communities across Discord with practical tools and reliable performance. Built to make server management simple for everyone."
       },
       ro: {
         navHome: "Acasă", navCommands: "Comenzi", navAbout: "Despre", navPremium: "Premium",
-        heroTitle: "Un ajutor de încredere pentru comunitatea ta",
-        heroDesc: "Gestionează-ți serverul de Discord cu instrumente simple pentru moderare, muzică și configurare. Creat să fie accesibil, stabil și adaptat nevoilor voastre.",
+        heroTitle: "Un ajutor de încredere pentru comunitatea ta", heroDesc: "Gestionează-ți serverul de Discord cu instrumente simple pentru moderare, muzică și configurare. Creat să fie accesibil și stabil.",
         inviteBtn: "Adaugă pe Discord", supportBtn: "Server de Suport",
-        statServers: "Servere", statUsers: "Utilizatori Activi", statUptime: "Timp Online",
+        statServers: "Servere", statUsers: "Utilizatori", statUptime: "Timp Online",
+        stepsTitle: "E simplu să începi", stepsDesc: "Nu ai nevoie de cunoștințe tehnice. Configurarea durează mai puțin de două minute.",
+        step1Title: "Invită Botul", step1Desc: "Apasă butonul de invitație și autorizează botul pe serverul tău.",
+        step2Title: "Configurare", step2Desc: "Folosește comenzi simple pentru a-ți seta preferințele.",
+        step3Title: "Relaxează-te", step3Desc: "Lasă PulseBot să îți mențină serverul sigur și activ.",
         featTitle: "Cu ce te poate ajuta PulseBot",
-        feat1Title: "Organizare și Siguranță", feat1Desc: "Unelte simple de moderare și istoric de activitate pentru a păstra comunitatea sigură, fără bătăi de cap.",
-        feat2Title: "Muzică în Canale", feat2Desc: "Ascultă piesele preferate alături de prieteni în canalele vocale, cu un control simplu și conexiune stabilă.",
-        feat3Title: "Adaptat stilului tău", feat3Desc: "Activează doar modulele de care ai nevoie. Tu alegi exact ce funcții se potrivesc comunității tale.",
-        footerDesc: "Susținem comunitățile de pe Discord prin unelte practice și performanță stabilă. Creat pentru a face gestionarea serverelor mai simplă."
+        feat1Title: "Organizare", feat1Desc: "Unelte simple de moderare pentru a păstra comunitatea sigură.",
+        feat2Title: "Muzică", feat2Desc: "Ascultă piesele preferate alături de prieteni în canalele vocale.",
+        feat3Title: "Adaptabil", feat3Desc: "Activează doar modulele de care ai nevoie. Tu alegi.",
+        cmdTitle: "Intuitiv și Familiar", cmdDesc: "Integrat perfect cu comenzile slash din Discord pentru o experiență fluidă.",
+        faqTitle: "Întrebări Frecvente",
+        faq1Q: "PulseBot este gratuit?", faq1A: "Da! Funcțiile de bază (moderare, muzică standard) sunt complet gratuite.",
+        faq2Q: "Datele serverului meu sunt sigure?", faq2A: "Prețuim intimitatea ta. Salvăm doar setările de bază necesare, în maximă siguranță.",
+        faq3Q: "Pot sugera o funcție nouă?", faq3A: "Cu siguranță. Te așteptăm pe serverul de suport cu orice idee!",
+        ctaTitle: "Pregătit să îți îmbunătățești serverul?", ctaDesc: "Alătură-te miilor de comunități fericite care folosesc PulseBot.",
+        footerDesc: "Susținem comunitățile de pe Discord prin unelte practice și performanță stabilă."
       },
       es: {
         navHome: "Inicio", navCommands: "Comandos", navAbout: "Acerca de", navPremium: "Premium",
-        heroTitle: "Una mano amiga para tu comunidad",
-        heroDesc: "Gestiona tu servidor de Discord con herramientas sencillas de moderación, música y configuración. Pensado para ser confiable y cercano a tus necesidades.",
-        inviteBtn: "Añadir a Discord", supportBtn: "Servidor de Soporte",
-        statServers: "Servidores", statUsers: "Usuarios Activos", statUptime: "Tiempo en línea",
-        featTitle: "Cómo te ayuda PulseBot",
-        feat1Title: "Moderación y Orden", feat1Desc: "Herramientas prácticas para mantener tu comunidad segura y organizada sin complicaciones.",
-        feat2Title: "Música de Calidad", feat2Desc: "Escucha tus canciones favoritas con amigos en canales de voz, de forma estable y sencilla.",
-        feat3Title: "A tu medida", feat3Desc: "Activa o desactiva los módulos según el estilo de tu servidor. Tú decides qué funciones usar.",
-        footerDesc: "Apoyando a las comunidades de Discord con herramientas prácticas. Diseñado para simplificar la gestión de servidores."
+        heroTitle: "Una mano amiga para tu comunidad", heroDesc: "Gestiona tu servidor de Discord con herramientas sencillas. Pensado para ser confiable y cercano a tus necesidades.",
+        inviteBtn: "Añadir a Discord", supportBtn: "Soporte", statServers: "Servidores", statUsers: "Usuarios", statUptime: "Tiempo en línea",
+        stepsTitle: "Comenzar es fácil", stepsDesc: "No necesitas habilidades técnicas. Configúralo en menos de dos minutos.",
+        step1Title: "Invita al Bot", step1Desc: "Haz clic en añadir y autoriza el bot en tu servidor.",
+        step2Title: "Ajuste rápido", step2Desc: "Usa comandos sencillos para tus preferencias.",
+        step3Title: "Disfruta", step3Desc: "Deja que PulseBot mantenga todo seguro.",
+        featTitle: "Qué aporta PulseBot",
+        feat1Title: "Moderación", feat1Desc: "Herramientas prácticas para mantener tu comunidad segura.",
+        feat2Title: "Música", feat2Desc: "Escucha tus canciones favoritas con amigos.",
+        feat3Title: "A tu medida", feat3Desc: "Activa o desactiva módulos según lo necesites.",
+        cmdTitle: "Familiar e Intuitivo", cmdDesc: "Totalmente integrado con los comandos de barra de Discord.",
+        faqTitle: "Preguntas Frecuentes",
+        faq1Q: "¿Es gratis?", faq1A: "¡Sí! Las funciones principales son totalmente gratuitas.",
+        faq2Q: "¿Están seguros mis datos?", faq2A: "Solo guardamos lo estrictamente necesario de forma segura.",
+        faq3Q: "¿Puedo sugerir algo?", faq3A: "¡Claro! Únete al servidor de soporte y cuéntanos.",
+        ctaTitle: "¿Listo para mejorar tu servidor?", ctaDesc: "Únete a las miles de comunidades que ya lo usan.",
+        footerDesc: "Apoyando a las comunidades de Discord con herramientas prácticas."
       },
       fr: {
         navHome: "Accueil", navCommands: "Commandes", navAbout: "À propos", navPremium: "Premium",
-        heroTitle: "Un coup de main pour votre communauté",
-        heroDesc: "Gerez votre serveur Discord avec des outils simples de modération, de musique et de configuration. Conçu pour être fiable et adapté à vos besoins.",
-        inviteBtn: "Ajouter à Discord", supportBtn: "Serveur de Support",
-        statServers: "Serveurs", statUsers: "Utilisateurs Actifs", statUptime: "Temps en ligne",
-        featTitle: "Comment PulseBot vous aide",
-        feat1Title: "Modération & Sécurité", feat1Desc: "Des outils simples pour garder votre communauté accueillante et organisée sans configurations complexes.",
-        feat2Title: "Musique en Salon", feat2Desc: "Écoutez vos morceaux préférés avec vos amis en salon vocal, avec une connexion stable et fluide.",
-        feat3Title: "Adapté à vos besoins", feat3Desc: "Activez uniquement les modules nécessaires. Vous choisissez ce qui convient le mieux à votre serveur.",
-        footerDesc: "Accompagner les communautés sur Discord avec des outils pratiques. Pensé pour rendre la gestion simple pour tous."
+        heroTitle: "Un coup de main pour votre communauté", heroDesc: "Gerez votre serveur Discord avec des outils simples de modération et de musique.",
+        inviteBtn: "Ajouter à Discord", supportBtn: "Support", statServers: "Serveurs", statUsers: "Utilisateurs", statUptime: "En ligne",
+        stepsTitle: "C'est simple de commencer", stepsDesc: "Aucune compétence technique requise. Prêt en deux minutes.",
+        step1Title: "Invitez le Bot", step1Desc: "Cliquez et autorisez le bot sur votre serveur.",
+        step2Title: "Configuration", step2Desc: "Utilisez des commandes simples pour vos choix.",
+        step3Title: "Profitez", step3Desc: "Laissez PulseBot gérer la sécurité.",
+        featTitle: "Ce que PulseBot apporte",
+        feat1Title: "Gestion", feat1Desc: "Des outils simples pour garder votre communauté accueillante.",
+        feat2Title: "Musique", feat2Desc: "Écoutez vos morceaux préférés en salon vocal.",
+        feat3Title: "Sur mesure", feat3Desc: "Activez uniquement les modules nécessaires.",
+        cmdTitle: "Intuitif et familier", cmdDesc: "Intégration parfaite avec les commandes slash de Discord.",
+        faqTitle: "Questions Fréquentes",
+        faq1Q: "Est-ce gratuit ?", faq1A: "Oui ! Les fonctions de base sont 100% gratuites.",
+        faq2Q: "Mes données sont-elles en sécurité ?", faq2A: "Nous ne conservons que le strict nécessaire, de manière sécurisée.",
+        faq3Q: "Puis-je suggérer une idée ?", faq3A: "Absolument. Rejoignez notre support pour en discuter !",
+        ctaTitle: "Prêt à améliorer votre serveur ?", ctaDesc: "Rejoignez des milliers de communautés satisfaites.",
+        footerDesc: "Accompagner les communautés sur Discord avec des outils pratiques."
       },
       de: {
-        navHome: "Startseite", navCommands: "Befehle", navAbout: "Über uns", navPremium: "Premium",
-        heroTitle: "Eine helfende Hand für deine Community",
-        heroDesc: "Verwalte deinen Discord-Server mit einfachen Tools für Moderation, Musik und Einrichtung. Zuverlässig, übersichtlich und nah an deinen Bedürfnissen.",
-        inviteBtn: "Zu Discord hinzufügen", supportBtn: "Support-Server",
-        statServers: "Server", statUsers: "Aktive Nutzer", statUptime: "Online-Zeit",
-        featTitle: "Wie PulseBot dir hilft",
-        feat1Title: "Moderation & Ordnung", feat1Desc: "Einfache Funktionen, um deine Community sicher und organisiert zu halten, ganz ohne Stress.",
-        feat2Title: "Musik im Voice-Channel", feat2Desc: "Höre deine Lieblingslieder zusammen mit Freunden im Sprachkanal, stabil und leicht zu bedienen.",
-        feat3Title: "Flexibel anpassbar", feat3Desc: "Schalte Module nach Belieben ein oder aus. Du entscheidest, welche Funktionen zu deinem Server passen.",
-        footerDesc: "Unterstützung von Discord-Communitys durch praktische Tools. Entwickelt, um die Serververwaltung für jeden einfacher zu machen."
+        navHome: "Start", navCommands: "Befehle", navAbout: "Über uns", navPremium: "Premium",
+        heroTitle: "Eine helfende Hand für deine Community", heroDesc: "Verwalte deinen Server mit einfachen Tools für Moderation und Musik.",
+        inviteBtn: "Hinzufügen", supportBtn: "Support", statServers: "Server", statUsers: "Nutzer", statUptime: "Online-Zeit",
+        stepsTitle: "Der Einstieg ist leicht", stepsDesc: "Keine Technikkenntnisse nötig. In zwei Minuten bereit.",
+        step1Title: "Bot einladen", step1Desc: "Klicke auf Hinzufügen und autorisiere den Bot.",
+        step2Title: "Setup", step2Desc: "Nutze einfache Befehle für deine Einstellungen.",
+        step3Title: "Zurücklehnen", step3Desc: "Lass PulseBot für Sicherheit sorgen.",
+        featTitle: "Was PulseBot bietet",
+        feat1Title: "Verwaltung", feat1Desc: "Einfache Funktionen für eine sichere Community.",
+        feat2Title: "Musik", feat2Desc: "Höre Musik zusammen mit Freunden.",
+        feat3Title: "Anpassbar", feat3Desc: "Schalte nur die Module ein, die du brauchst.",
+        cmdTitle: "Vertraut & Intuitiv", cmdDesc: "Perfekt in Discords Slash-Befehle integriert.",
+        faqTitle: "Häufige Fragen",
+        faq1Q: "Ist es kostenlos?", faq1A: "Ja! Die Grundfunktionen sind komplett gratis.",
+        faq2Q: "Sind meine Daten sicher?", faq2A: "Wir speichern nur das Nötigste, sicher verschlüsselt.",
+        faq3Q: "Kann ich etwas vorschlagen?", faq3A: "Klar, besuche einfach unseren Support-Server!",
+        ctaTitle: "Bereit für das Upgrade?", ctaDesc: "Schließe dich tausenden Servern an.",
+        footerDesc: "Unterstützung von Discord-Communitys durch praktische Tools."
       },
       it: {
         navHome: "Home", navCommands: "Comandi", navAbout: "Info", navPremium: "Premium",
-        heroTitle: "Una mano colma d'aiuto per la tua community",
-        heroDesc: "Gestisci il tuo server Discord con strumenti semplici per moderazione, musica e configurazione. Creato per essere affidabile e vicino alle tue esigenze.",
-        inviteBtn: "Aggiungi a Discord", supportBtn: "Server di Supporto",
-        statServers: "Server", statUsers: "Utenti Attivi", statUptime: "Tempo attività",
-        featTitle: "Come PulseBot ti aiuta",
-        feat1Title: "Moderazione e Sicurezza", feat1Desc: "Strumenti pratici per mantenere la tua community sicura e organizzata senza complicazioni.",
-        feat2Title: "Musica nei Canali", feat2Desc: "Ascolta i tuoi brani preferiti con gli amici nei canali vocali, con una connessione stabile.",
-        feat3Title: "Su misura per te", feat3Desc: "Attiva o disattiva i moduli in base allo stile del tuo server. Decidi tu quali funzioni utilizzare.",
-        footerDesc: "Supportiamo le community di Discord con strumenti pratici. Progettato per rendere la gestione dei server semplice per tutti."
+        heroTitle: "Un aiuto per la tua community", heroDesc: "Gestisci il tuo server con strumenti semplici per moderazione e musica.",
+        inviteBtn: "Aggiungi a Discord", supportBtn: "Supporto", statServers: "Server", statUsers: "Utenti", statUptime: "Attività",
+        stepsTitle: "Iniziare è facile", stepsDesc: "Nessuna competenza tecnica. Pronto in due minuti.",
+        step1Title: "Invita il Bot", step1Desc: "Clicca e autorizza il bot nel tuo server.",
+        step2Title: "Configura", step2Desc: "Usa comandi semplici per le tue preferenze.",
+        step3Title: "Rilassati", step3Desc: "Lascia che PulseBot mantenga l'ordine.",
+        featTitle: "Cosa offre PulseBot",
+        feat1Title: "Gestione", feat1Desc: "Strumenti pratici per una community sicura.",
+        feat2Title: "Musica", feat2Desc: "Ascolta i tuoi brani preferiti con gli amici.",
+        feat3Title: "Su misura", feat3Desc: "Attiva solo i moduli che ti servono.",
+        cmdTitle: "Familiare e Intuitivo", cmdDesc: "Integrato con i comandi slash di Discord.",
+        faqTitle: "Domande Frequenti",
+        faq1Q: "È gratuito?", faq1A: "Sì! Le funzioni di base sono gratuite.",
+        faq2Q: "I miei dati sono al sicuro?", faq2A: "Salviamo solo il minimo indispensabile in modo sicuro.",
+        faq3Q: "Posso suggerire una funzione?", faq3A: "Certo! Entra nel nostro server di supporto.",
+        ctaTitle: "Pronto a migliorare il server?", ctaDesc: "Unisciti a migliaia di community.",
+        footerDesc: "Supportiamo le community di Discord con strumenti pratici."
       },
       pt: {
         navHome: "Início", navCommands: "Comandos", navAbout: "Sobre", navPremium: "Premium",
-        heroTitle: "Uma mão amiga para a sua comunidade",
-        heroDesc: "Gerencie seu servidor do Discord com ferramentas simples de moderação, música e configuração. Feito para ser confiável e próximo das suas necessidades.",
-        inviteBtn: "Adicionar ao Discord", supportBtn: "Servidor de Suporte",
-        statServers: "Servidores", statUsers: "Usuários Ativos", statUptime: "Tempo online",
-        featTitle: "Como o PulseBot ajuda",
-        feat1Title: "Moderação e Organização", feat1Desc: "Ferramentas práticas para manter sua comunidade segura e organizada sem complicações.",
-        feat2Title: "Música de Qualidade", feat2Desc: "Ouça suas músicas favoritas com amigos nos canais de voz de forma estável e fácil.",
-        feat3Title: "Do seu jeito", feat3Desc: "Ative ou desative os módulos conforme o estilo do seu servidor. Você escolhe o que usar.",
-        footerDesc: "Apoiando comunidades no Discord com ferramentas práticas. Criado para tornar a gestão de servidores simples para todos."
+        heroTitle: "Uma mão amiga para sua comunidade", heroDesc: "Gerencie seu servidor com ferramentas simples de moderação e música.",
+        inviteBtn: "Adicionar", supportBtn: "Suporte", statServers: "Servidores", statUsers: "Usuários", statUptime: "Tempo online",
+        stepsTitle: "Começar é fácil", stepsDesc: "Sem complicações. Configure tudo em dois minutos.",
+        step1Title: "Convide o Bot", step1Desc: "Clique e autorize o bot no servidor.",
+        step2Title: "Ajustes", step2Desc: "Use comandos simples para configurar.",
+        step3Title: "Aproveite", step3Desc: "Deixe a segurança por nossa conta.",
+        featTitle: "O que oferecemos",
+        feat1Title: "Moderação", feat1Desc: "Ferramentas práticas para manter a ordem.",
+        feat2Title: "Música", feat2Desc: "Ouça suas músicas favoritas com amigos.",
+        feat3Title: "Do seu jeito", feat3Desc: "Ative ou desative módulos como quiser.",
+        cmdTitle: "Intuitivo", cmdDesc: "Integrado aos comandos de barra do Discord.",
+        faqTitle: "Perguntas Comuns",
+        faq1Q: "É de graça?", faq1A: "Sim, as funções principais são gratuitas.",
+        faq2Q: "Meus dados estão seguros?", faq2A: "Guardamos apenas o essencial com total segurança.",
+        faq3Q: "Posso dar uma sugestão?", faq3A: "Claro! Entre no servidor de suporte e avise a gente.",
+        ctaTitle: "Pronto para melhorar o servidor?", ctaDesc: "Junte-se a milhares de comunidades.",
+        footerDesc: "Apoiando comunidades no Discord com ferramentas práticas."
       },
       ru: {
-        navHome: "Главная", navCommands: "Команды", navAbout: "О боте", navPremium: "Premium",
-        heroTitle: "Надёжный помощник для вашего сервера",
-        heroDesc: "Управляйте сервером Discord с помощью простых инструментов модерации, музыки и настройки. Создан быть понятным, стабильным и удобным.",
-        inviteBtn: "Добавить в Discord", supportBtn: "Сервер поддержки",
-        statServers: "Серверы", statUsers: "Активные пользователи", statUptime: "Время работы",
-        featTitle: "Чем поможет PulseBot",
-        feat1Title: "Модерация и порядок", feat1Desc: "Простые инструменты для защиты и организации вашего сообщества без сложных настроек.",
-        feat2Title: "Музыка в каналах", feat2Desc: "Слушайте любимые треки вместе с друзьями в голосовых каналах со стабильным качеством.",
-        feat3Title: "Настройка под себя", feat3Desc: "Включайте только те модули, которые вам нужны. Вы сами выбираете функции для своего сервера.",
-        footerDesc: "Помогаем сообществам в Discord простыми и надёжными инструментами. Сделано, чтобы управление сервером было доступно каждому."
+        navHome: "Главная", navCommands: "Команды", navAbout: "О нас", navPremium: "Premium",
+        heroTitle: "Помощник для вашего сообщества", heroDesc: "Управляйте сервером с помощью простых инструментов модерации и музыки.",
+        inviteBtn: "Добавить", supportBtn: "Поддержка", statServers: "Серверы", statUsers: "Пользователи", statUptime: "Время работы",
+        stepsTitle: "Начать очень просто", stepsDesc: "Настройка занимает меньше двух минут.",
+        step1Title: "Пригласить бота", step1Desc: "Нажмите кнопку и авторизуйте бота.",
+        step2Title: "Настройка", step2Desc: "Используйте простые команды для настройки.",
+        step3Title: "Готово", step3Desc: "Пусть PulseBot заботится о безопасности.",
+        featTitle: "Что дает PulseBot",
+        feat1Title: "Управление", feat1Desc: "Простые инструменты для порядка.",
+        feat2Title: "Музыка", feat2Desc: "Слушайте музыку с друзьями в голосовых каналах.",
+        feat3Title: "Гибкость", feat3Desc: "Включайте только то, что нужно.",
+        cmdTitle: "Удобные команды", cmdDesc: "Полная интеграция со слеш-командами Discord.",
+        faqTitle: "Частые вопросы",
+        faq1Q: "Это бесплатно?", faq1A: "Да, основные функции полностью бесплатны.",
+        faq2Q: "Мои данные в безопасности?", faq2A: "Мы надежно храним только самые необходимые данные.",
+        faq3Q: "Могу я предложить идею?", faq3A: "Конечно! Заходите на сервер поддержки.",
+        ctaTitle: "Готовы улучшить сервер?", ctaDesc: "Присоединяйтесь к тысячам сообществ.",
+        footerDesc: "Помогаем сообществам простыми и надёжными инструментами."
       },
       jp: {
         navHome: "ホーム", navCommands: "コマンド", navAbout: "詳細", navPremium: "Premium",
-        heroTitle: "コミュニティに寄り添うパートナー",
-        heroDesc: "モデレーション、音楽、各種設定など、Discordサーバーをシンプルなツールで管理。使いやすさと安定性を大切にしています。",
-        inviteBtn: "Discordに追加", supportBtn: "サポートサーバー",
-        statServers: "サーバー数", statUsers: "アクティブユーザー", statUptime: "稼働時間",
-        featTitle: "PulseBotの主な機能",
-        feat1Title: "安心のモデレーション", feat1Desc: "複雑な設定なしで、サーバーを安全かつクリーンに保つためのシンプルな管理ツール。",
-        feat2Title: "高音質な音楽再生", feat2Desc: "ボイスチャンネルで友達と一緒に、お気に入りの音楽を安定した環境で楽しめます。",
-        feat3Title: "自由なカスタマイズ", feat3Desc: "サーバーのスタイルに合わせて、必要なモジュールだけを自由に有効化できます。",
-        footerDesc: "実用的なツールでDiscordコミュニティをサポート。誰もが簡単にサーバー管理を行えるように設計されています。"
+        heroTitle: "コミュニティの頼れるパートナー", heroDesc: "モデレーションや音楽など、シンプルなツールでサーバーを管理します。",
+        inviteBtn: "追加する", supportBtn: "サポート", statServers: "サーバー数", statUsers: "ユーザー数", statUptime: "稼働時間",
+        stepsTitle: "始め方は簡単", stepsDesc: "専門知識は不要です。2分でセットアップ完了。",
+        step1Title: "ボットを招待", step1Desc: "ボタンをクリックしてサーバーに追加。",
+        step2Title: "設定", step2Desc: "シンプルなコマンドで好みに設定。",
+        step3Title: "楽しむ", step3Desc: "あとはPulseBotにお任せください。",
+        featTitle: "PulseBotの特徴",
+        feat1Title: "管理", feat1Desc: "サーバーを安全に保つためのシンプルなツール。",
+        feat2Title: "音楽", feat2Desc: "友達と一緒に高音質の音楽を楽しめます。",
+        feat3Title: "カスタマイズ", feat3Desc: "必要な機能だけを有効にできます。",
+        cmdTitle: "使いやすいコマンド", cmdDesc: "Discordのスラッシュコマンドに完全対応。",
+        faqTitle: "よくある質問",
+        faq1Q: "無料ですか？", faq1A: "はい！基本的な機能は完全に無料です。",
+        faq2Q: "データは安全ですか？", faq2A: "動作に必要な最低限のデータのみを安全に保管します。",
+        faq3Q: "要望は出せますか？", faq3A: "もちろんです。サポートサーバーでお待ちしています！",
+        ctaTitle: "サーバーをアップグレードしませんか？", ctaDesc: "すでに多くのコミュニティが利用しています。",
+        footerDesc: "実用的なツールでDiscordコミュニティをサポート。"
       },
       hi: {
-        navHome: "होम", navCommands: "कमांड्स", navAbout: "के बारे में", navPremium: "Premium",
-        heroTitle: "आपकी कम्युनिटी के लिए एक मददगार साथी",
-        heroDesc: "मॉडरेशन, म्यूज़िक और सेटअप के लिए आसान टूल्स के साथ अपने डिस्कॉर्ड सर्वर को संभालें। इसे सरल, भरोसेमंद और आपकी ज़रूरतों के हिसाब से बनाया गया है।" ,
-        inviteBtn: "डिस्कॉर्ड में जोड़ें", supportBtn: "सपोर्ट सर्वर",
-        statServers: "सर्वर", statUsers: "सक्रिय उपयोगकर्ता", statUptime: "अपटाइम",
-        featTitle: "PulseBot आपकी कैसे मदद करता है",
-        feat1Title: "मॉडरेशन और सुरक्षा", feat1Desc: "बिना किसी जटिल सेटअप के अपनी कम्युनिटी को सुरक्षित और व्यवस्थित रखने के लिए आसान टूल्स।",
-        feat2Title: "वॉइस चैनल में म्यूज़िक", feat2Desc: "स्थिर कनेक्शन और आसान कंट्रोल के साथ वॉइस चैनल में दोस्तों के साथ अपने पसंदीदा गानों का आनंद लें।",
-        feat3Title: "आपकी पसंद के अनुसार", feat3Desc: "अपने सर्वर के स्टाइल के हिसाब से मॉड्यूल्स को चालू या बंद करें। आप खुद तय करें कि आपको कौन से फीचर्स चाहिए।",
-        footerDesc: "प्रैक्टिकल टूल्स के साथ डिस्कॉर्ड कम्युनिटीज़ की मदद करना। सर्वर मैनेजमेंट को हर किसी के लिए आसान बनाने के लिए बनाया गया है।"
+        navHome: "होम", navCommands: "कमांड्स", navAbout: "बारे में", navPremium: "Premium",
+        heroTitle: "कम्युनिटी के लिए एक मददगार", heroDesc: "मॉडरेशन और म्यूज़िक के लिए आसान टूल्स के साथ सर्वर को संभालें।",
+        inviteBtn: "जोड़ें", supportBtn: "सपोर्ट", statServers: "सर्वर", statUsers: "उपयोगकर्ता", statUptime: "अपटाइम",
+        stepsTitle: "शुरू करना आसान है", stepsDesc: "तकनीकी ज्ञान की जरूरत नहीं। 2 मिनट में सेट करें।",
+        step1Title: "बॉट को बुलाएं", step1Desc: "क्लिक करें और सर्वर में जोड़ें।",
+        step2Title: "सेटअप", step2Desc: "आसान कमांड्स से सेट करें।",
+        step3Title: "मज़े करें", step3Desc: "सुरक्षा बॉट पर छोड़ दें।",
+        featTitle: "PulseBot के फायदे",
+        feat1Title: "मॉडरेशन", feat1Desc: "सर्वर को सुरक्षित रखने के लिए आसान टूल्स।",
+        feat2Title: "म्यूज़िक", feat2Desc: "दोस्तों के साथ गानों का आनंद लें।",
+        feat3Title: "आपकी पसंद", feat3Desc: "सिर्फ जरूरी फीचर्स चालू करें।",
+        cmdTitle: "आसान कमांड्स", cmdDesc: "डिस्कॉर्ड के स्लैश कमांड्स के साथ जुड़ा हुआ।",
+        faqTitle: "सामान्य सवाल",
+        faq1Q: "क्या यह मुफ्त है?", faq1A: "हाँ! मुख्य फीचर्स बिलकुल मुफ्त हैं।",
+        faq2Q: "क्या डेटा सुरक्षित है?", faq2A: "हम सिर्फ जरूरी डेटा को सुरक्षित रखते हैं।",
+        faq3Q: "क्या मैं सुझाव दे सकता हूँ?", faq3A: "बिल्कुल! सपोर्ट सर्वर पर आपका स्वागत है।",
+        ctaTitle: "सर्वर को बेहतर बनाने के लिए तैयार?", ctaDesc: "हजारों कम्युनिटीज़ से जुड़ें।",
+        footerDesc: "प्रैक्टिकल टूल्स के साथ डिस्कॉर्ड कम्युनिटीज़ की मदद करना।"
       }
     };
 
     const flags = { en: "🇺🇸", ro: "🇷🇴", es: "🇪🇸", fr: "🇫🇷", de: "🇩🇪", it: "🇮🇹", pt: "🇵🇹", ru: "🇷🇺", jp: "🇯🇵", hi: "🇮🇳" };
 
-    // Funcția de schimbare limbă
     function changeLanguage(lang) {
       if (!translations[lang]) return;
-      
-      // Actualizează elementele text cu atributul data-i18n
       document.querySelectorAll("[data-i18n]").forEach(element => {
         const key = element.getAttribute("data-i18n");
         if (translations[lang][key]) {
           element.textContent = translations[lang][key];
         }
       });
-
-      // Actualizează steagul principal afișat în navbar
-      const mainFlagSelector = document.getElementById("current-lang-flag");
-      mainFlagSelector.childNodes[0].nodeValue = flags[lang] + " ";
+      document.getElementById("current-lang-flag").childNodes[0].nodeValue = flags[lang] + " ";
     }
 
-    // Atașează evenimente pe fiecare opțiune din dropdown
     document.querySelectorAll("#lang-dropdown-list span").forEach(span => {
       span.addEventListener("click", (e) => {
-        const selectedLang = e.currentTarget.getAttribute("data-lang");
-        changeLanguage(selectedLang);
+        changeLanguage(e.currentTarget.getAttribute("data-lang"));
       });
     });
 
-
-    // ==========================================
-    // GENERARE FAVICON NATIV (Logo-ul tău "A")
-    // ==========================================
+    // --- 2. Generare Favicon ---
     (function generateFavicon() {
       const cvs = document.createElement('canvas');
       cvs.width = 128; cvs.height = 128;
@@ -560,96 +636,60 @@
       function ringGradient() {
         const g = ctx.createLinearGradient(170, 150, 860, 890);
         g.addColorStop(0, '#9CF7FF'); g.addColorStop(0.35, '#63CFFF');
-        g.addColorStop(0.7, '#4E8CFF'); g.addColorStop(1, '#8E74FF');
-        return g;
+        g.addColorStop(0.7, '#4E8CFF'); g.addColorStop(1, '#8E74FF'); return g;
       }
-
       function highlightGradient() {
         const g = ctx.createLinearGradient(280, 180, 720, 860);
         g.addColorStop(0, '#F5FEFF'); g.addColorStop(0.18, '#B5F4FF');
-        g.addColorStop(0.55, '#71D2FF'); g.addColorStop(1, '#597BFF');
-        return g;
+        g.addColorStop(0.55, '#71D2FF'); g.addColorStop(1, '#597BFF'); return g;
       }
 
-      ctx.save();
-      ctx.shadowColor = 'rgba(104, 188, 255, 0.4)'; ctx.shadowBlur = 30;
+      ctx.save(); ctx.shadowColor = 'rgba(104, 188, 255, 0.4)'; ctx.shadowBlur = 30;
       ctx.beginPath(); ctx.arc(512, 512, 380, 0, Math.PI * 2);
       ctx.strokeStyle = ringGradient(); ctx.lineWidth = 42; ctx.lineCap = 'round'; ctx.stroke();
-
       ctx.shadowBlur = 0; ctx.beginPath(); ctx.arc(512, 512, 380, Math.PI * 0.18, Math.PI * 1.36);
-      ctx.strokeStyle = 'rgba(255,255,255,0.28)'; ctx.lineWidth = 10; ctx.lineCap = 'round'; ctx.stroke();
-      ctx.restore();
+      ctx.strokeStyle = 'rgba(255,255,255,0.28)'; ctx.lineWidth = 10; ctx.lineCap = 'round'; ctx.stroke(); ctx.restore();
 
-      ctx.save();
-      ctx.shadowColor = 'rgba(104, 188, 255, 0.4)'; ctx.shadowBlur = 30;
+      ctx.save(); ctx.shadowColor = 'rgba(104, 188, 255, 0.4)'; ctx.shadowBlur = 30;
       ctx.fillStyle = highlightGradient(); ctx.beginPath();
       ctx.moveTo(512, 204); ctx.lineTo(738, 792); ctx.lineTo(650, 792);
       ctx.lineTo(587, 634); ctx.lineTo(437, 634); ctx.lineTo(374, 792);
       ctx.lineTo(286, 792); ctx.closePath(); ctx.fill();
 
-      const cut = new Path2D();
-      cut.moveTo(512, 320); cut.lineTo(631, 619); cut.lineTo(564, 619);
-      cut.lineTo(512, 481); cut.lineTo(460, 619); cut.lineTo(393, 619); cut.closePath();
+      const cut = new Path2D(); cut.moveTo(512, 320); cut.lineTo(631, 619); cut.lineTo(564, 619); cut.lineTo(512, 481); cut.lineTo(460, 619); cut.lineTo(393, 619); cut.closePath();
+      const cross = new Path2D(); cross.moveTo(442, 694); cross.quadraticCurveTo(512, 648, 582, 694); cross.quadraticCurveTo(512, 673, 442, 694); cross.closePath();
 
-      const cross = new Path2D();
-      cross.moveTo(442, 694); cross.quadraticCurveTo(512, 648, 582, 694); cross.quadraticCurveTo(512, 673, 442, 694); cross.closePath();
-
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.fill(cut); ctx.fill(cross); ctx.restore();
-
+      ctx.globalCompositeOperation = 'destination-out'; ctx.fill(cut); ctx.fill(cross); ctx.restore();
       document.getElementById('dynamic-favicon').href = cvs.toDataURL('image/png');
     })();
 
-
-    // ==========================================
-    // ANIMATIE BACKGROUND CANVAS (Stele/Particule)
-    // ==========================================
+    // --- 3. Animatie Fundal Stele/Fulgi ---
     const canvas = document.getElementById('bgCanvas');
     const bgCtx = canvas.getContext('2d');
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeCanvas); resizeCanvas();
 
     const particles = [];
-    const numParticles = 150;
-
-    for (let i = 0; i < numParticles; i++) {
+    for (let i = 0; i < 150; i++) {
       particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.5 + 0.5,
-        speedY: Math.random() * 0.4 + 0.1,
-        opacity: Math.random()
+        x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+        radius: Math.random() * 1.5 + 0.5, speedY: Math.random() * 0.4 + 0.1, opacity: Math.random()
       });
     }
 
     function animateBg() {
       bgCtx.clearRect(0, 0, canvas.width, canvas.height);
-
       for (let i = 0; i < particles.length; i++) {
         let p = particles[i];
-        bgCtx.beginPath();
-        bgCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        bgCtx.fillStyle = `rgba(140, 248, 255, ${p.opacity})`;
-        bgCtx.fill();
-
+        bgCtx.beginPath(); bgCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        bgCtx.fillStyle = `rgba(140, 248, 255, ${p.opacity})`; bgCtx.fill();
         p.y -= p.speedY; 
-        if (p.y < 0) {
-          p.y = canvas.height;
-          p.x = Math.random() * canvas.width;
-        }
-
+        if (p.y < 0) { p.y = canvas.height; p.x = Math.random() * canvas.width; }
         p.opacity += (Math.random() - 0.5) * 0.05;
-        if (p.opacity < 0.1) p.opacity = 0.1;
-        if (p.opacity > 0.8) p.opacity = 0.8;
+        if (p.opacity < 0.1) p.opacity = 0.1; if (p.opacity > 0.8) p.opacity = 0.8;
       }
       requestAnimationFrame(animateBg);
     }
-
     animateBg();
   </script>
 </body>
