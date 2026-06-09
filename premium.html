@@ -1,0 +1,2311 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aureon Premium Gems are optional premium packages prepared for future VIP access, profile perks and server rewards."
+    />
+    <meta name="theme-color" content="#63CFFF" />
+    <meta property="og:title" content="Aureon Premium Gems" />
+    <meta
+      property="og:description"
+      content="Simple Gems packages for future VIP rewards and optional Aureon premium perks."
+    />
+    <title>Aureon | Premium Gems</title>
+    <link id="dynamic-favicon" rel="icon" type="image/png" href="" />
+
+    <style>
+      /* =========================================================
+         AUREON PREMIUM PAGE
+         Single clean HTML file.
+         Sections: Theme, Base, Header, Hero, Packs, Info, FAQ, Footer, JS
+         ========================================================= */
+
+      :root {
+        --bg: #050714;
+        --bg-2: #080b16;
+        --panel: rgba(14, 18, 34, 0.78);
+        --panel-2: rgba(10, 14, 28, 0.92);
+        --line: rgba(255, 255, 255, 0.1);
+        --line-bright: rgba(140, 248, 255, 0.24);
+        --text: #edf3ff;
+        --muted: #aebbe2;
+        --soft: #7d89b1;
+        --cyan: #8cf8ff;
+        --blue: #63cfff;
+        --sapphire: #4e8cff;
+        --violet: #8e74ff;
+        --discord: #5865f2;
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+        --radius: 28px;
+        --container: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        overflow-x: hidden;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Arial,
+          sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 16% -8%, rgba(140, 248, 255, 0.2), transparent 30%),
+          radial-gradient(circle at 86% 8%, rgba(142, 116, 255, 0.18), transparent 31%),
+          linear-gradient(180deg, #10172f 0%, #080b16 48%, #050714 100%);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -3;
+        pointer-events: none;
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.023) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.023) 1px, transparent 1px);
+        background-size: 76px 76px;
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.16));
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      ::selection {
+        background: rgba(140, 248, 255, 0.25);
+        color: #ffffff;
+      }
+
+      ::-webkit-scrollbar {
+        width: 11px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #060916;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, var(--cyan), var(--sapphire), var(--violet));
+        border: 3px solid #060916;
+        border-radius: 999px;
+      }
+
+      #bgCanvas {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+      }
+
+      .soft-glow {
+        position: fixed;
+        width: 320px;
+        height: 320px;
+        left: -120px;
+        bottom: 8%;
+        border-radius: 50%;
+        background: rgba(140, 248, 255, 0.12);
+        filter: blur(36px);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .soft-glow.two {
+        left: auto;
+        right: -140px;
+        top: 35%;
+        bottom: auto;
+        background: rgba(142, 116, 255, 0.12);
+      }
+
+      .shell {
+        width: min(100% - 32px, var(--container));
+        margin: 0 auto;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 28%, var(--blue) 56%, var(--violet) 100%);
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 18px;
+        padding: 9px 13px;
+        border: 1px solid rgba(140, 248, 255, 0.2);
+        border-radius: 999px;
+        background: rgba(140, 248, 255, 0.075);
+        color: #d9fbff;
+        font-size: 13px;
+        font-weight: 850;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .section {
+        padding: 90px 0;
+      }
+
+      .section-heading {
+        max-width: 820px;
+        margin: 0 auto 34px;
+        text-align: center;
+      }
+
+      .section-heading h2 {
+        margin-bottom: 16px;
+        font-size: clamp(30px, 5vw, 48px);
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+      }
+
+      .section-heading p {
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.8;
+      }
+
+      /* ---------- Header ---------- */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(6, 9, 22, 0.76);
+        backdrop-filter: blur(16px);
+      }
+
+      .nav-shell {
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: max-content;
+      }
+
+      .brand canvas {
+        width: 42px;
+        height: 42px;
+        filter: drop-shadow(0 0 16px rgba(99, 207, 255, 0.25));
+      }
+
+      .brand-copy {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+
+      .brand-name {
+        font-size: 22px;
+        font-weight: 950;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-tag {
+        margin-top: 5px;
+        color: var(--soft);
+        font-size: 11px;
+        font-weight: 750;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .nav-links a {
+        padding: 10px 14px;
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 850;
+        transition:
+          color 0.2s ease,
+          background 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #ffffff;
+        background: rgba(140, 248, 255, 0.11);
+        transform: translateY(-1px);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .lang-selector {
+        position: relative;
+      }
+
+      .lang-button,
+      .motion-button,
+      .menu-button {
+        min-height: 42px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.055);
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: 900;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .lang-button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 13px;
+      }
+
+      .motion-button,
+      .menu-button {
+        width: 42px;
+      }
+
+      .menu-button {
+        display: none;
+      }
+
+      .lang-button:hover,
+      .motion-button:hover,
+      .menu-button:hover {
+        transform: translateY(-1px);
+        border-color: rgba(140, 248, 255, 0.32);
+        background: rgba(140, 248, 255, 0.08);
+      }
+
+      .lang-dropdown {
+        position: absolute;
+        top: calc(100% + 12px);
+        right: 0;
+        width: 176px;
+        display: none;
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        background: rgba(8, 11, 22, 0.96);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(16px);
+      }
+
+      .lang-selector.open .lang-dropdown {
+        display: grid;
+        gap: 5px;
+      }
+
+      .lang-dropdown button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        border: 0;
+        border-radius: 12px;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        font-weight: 850;
+        text-align: left;
+      }
+
+      .lang-dropdown button:hover,
+      .lang-dropdown button.active {
+        background: rgba(255, 255, 255, 0.08);
+        color: #ffffff;
+      }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        padding: 90px 0 70px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.04fr 0.96fr;
+        gap: 36px;
+        align-items: center;
+      }
+
+      .hero-copy h1 {
+        max-width: 780px;
+        margin-bottom: 22px;
+        font-size: clamp(42px, 7vw, 76px);
+        line-height: 0.98;
+        letter-spacing: -0.07em;
+      }
+
+      .hero-copy p {
+        max-width: 700px;
+        margin-bottom: 28px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.85;
+      }
+
+      .hero-actions,
+      .hero-notes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .hero-actions {
+        margin-bottom: 24px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 52px;
+        padding: 0 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 900;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          border-color 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button.primary {
+        border: 0;
+        color: #03152b;
+        background: linear-gradient(135deg, var(--cyan), var(--blue), var(--violet));
+        box-shadow: 0 18px 42px rgba(99, 207, 255, 0.2);
+      }
+
+      .button.secondary {
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .button.secondary:hover {
+        border-color: rgba(140, 248, 255, 0.32);
+        background: rgba(140, 248, 255, 0.08);
+      }
+
+      .note-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.045);
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 850;
+      }
+
+      .premium-orbit {
+        position: relative;
+        min-height: 520px;
+        display: grid;
+        place-items: center;
+      }
+
+      .orbital-ring {
+        position: absolute;
+        width: min(92vw, 480px);
+        aspect-ratio: 1 / 1;
+        border: 1px solid rgba(140, 248, 255, 0.14);
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at center, rgba(140, 248, 255, 0.09), transparent 42%),
+          linear-gradient(135deg, rgba(140, 248, 255, 0.05), rgba(142, 116, 255, 0.05));
+        box-shadow: inset 0 0 60px rgba(140, 248, 255, 0.06);
+        animation: slowRotate 30s linear infinite;
+      }
+
+      .orbital-ring::before,
+      .orbital-ring::after {
+        content: "";
+        position: absolute;
+        inset: 50px;
+        border: 1px solid rgba(142, 116, 255, 0.14);
+        border-radius: 50%;
+      }
+
+      .orbital-ring::after {
+        inset: 104px;
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .gem-core {
+        position: relative;
+        width: min(82vw, 345px);
+        padding: 28px;
+        border: 1px solid rgba(140, 248, 255, 0.22);
+        border-radius: 32px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04)),
+          rgba(10, 14, 28, 0.86);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(16px);
+      }
+
+      .gem-badge {
+        width: 96px;
+        height: 96px;
+        margin: 0 auto 20px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 30px;
+        background: linear-gradient(135deg, rgba(140, 248, 255, 0.22), rgba(142, 116, 255, 0.24));
+        box-shadow: 0 0 44px rgba(99, 207, 255, 0.16);
+        font-size: 44px;
+        animation: gemFloat 4s ease-in-out infinite;
+      }
+
+      .gem-core h2,
+      .gem-core p {
+        text-align: center;
+      }
+
+      .gem-core h2 {
+        margin-bottom: 10px;
+        font-size: 28px;
+      }
+
+      .gem-core p {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .discord-preview {
+        margin-top: 22px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        background: #313338;
+      }
+
+      .discord-topbar {
+        padding: 10px 12px;
+        background: #2b2d31;
+        color: #b5bac1;
+        font-size: 12px;
+        font-weight: 850;
+      }
+
+      .discord-message {
+        padding: 14px;
+      }
+
+      .discord-author {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-bottom: 10px;
+        color: #ffffff;
+        font-weight: 900;
+      }
+
+      .bot-avatar {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--cyan), var(--violet));
+      }
+
+      .bot-tag {
+        padding: 2px 5px;
+        border-radius: 4px;
+        background: var(--discord);
+        color: #ffffff;
+        font-size: 10px;
+        font-weight: 950;
+      }
+
+      .discord-embed {
+        margin-left: 43px;
+        padding: 13px 14px;
+        border-left: 4px solid var(--cyan);
+        border-radius: 5px;
+        background: #2b2d31;
+        color: #dbdee1;
+        line-height: 1.55;
+      }
+
+      .discord-embed span {
+        color: #b5bac1;
+        font-size: 13px;
+      }
+
+      /* ---------- Pricing ---------- */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .price-card {
+        position: relative;
+        overflow: hidden;
+        padding: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
+          rgba(14, 18, 34, 0.76);
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.24);
+        transition:
+          transform 0.24s ease,
+          border-color 0.24s ease,
+          box-shadow 0.24s ease;
+      }
+
+      .price-card::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: -90px;
+        width: 210px;
+        height: 210px;
+        border-radius: 50%;
+        background: rgba(140, 248, 255, 0.1);
+        filter: blur(6px);
+      }
+
+      .price-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(140, 248, 255, 0.32);
+        box-shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
+      }
+
+      .price-card.featured {
+        border-color: rgba(140, 248, 255, 0.34);
+        background:
+          linear-gradient(180deg, rgba(140, 248, 255, 0.13), rgba(142, 116, 255, 0.08)),
+          rgba(14, 18, 34, 0.84);
+      }
+
+      .popular-label {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        padding: 7px 10px;
+        border: 1px solid rgba(140, 248, 255, 0.22);
+        border-radius: 999px;
+        background: rgba(140, 248, 255, 0.12);
+        color: #dffcff;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .pack-icon {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(140, 248, 255, 0.2), rgba(142, 116, 255, 0.18));
+        font-size: 28px;
+      }
+
+      .price-card h3,
+      .pack-subtitle,
+      .price-row,
+      .gem-amount,
+      .feature-list,
+      .price-card .button {
+        position: relative;
+      }
+
+      .price-card h3 {
+        margin-bottom: 8px;
+        font-size: 24px;
+      }
+
+      .pack-subtitle {
+        min-height: 78px;
+        margin-bottom: 18px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .price-row {
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .price {
+        font-size: 46px;
+        font-weight: 950;
+        letter-spacing: -0.06em;
+      }
+
+      .currency-note {
+        padding-bottom: 8px;
+        color: var(--soft);
+        font-size: 13px;
+        font-weight: 850;
+      }
+
+      .gem-amount {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+        padding: 13px 14px;
+        border: 1px solid rgba(140, 248, 255, 0.18);
+        border-radius: 18px;
+        background: rgba(140, 248, 255, 0.07);
+      }
+
+      .gem-amount strong {
+        font-size: 19px;
+      }
+
+      .gem-amount span {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 850;
+      }
+
+      .feature-list {
+        list-style: none;
+        display: grid;
+        gap: 12px;
+        margin: 18px 0 24px;
+      }
+
+      .feature-list li {
+        display: flex;
+        gap: 10px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .feature-list li::before {
+        content: "✦";
+        flex: 0 0 auto;
+        color: var(--cyan);
+      }
+
+      .price-card .button {
+        width: 100%;
+      }
+
+      .fine-print {
+        margin-top: 24px;
+        color: var(--soft);
+        font-size: 13px;
+        line-height: 1.8;
+        text-align: center;
+      }
+
+      /* ---------- Info cards ---------- */
+      .info-grid,
+      .policy-grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .info-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .policy-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .info-card,
+      .policy-card,
+      .step-card {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        background: rgba(14, 18, 34, 0.66);
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
+        backdrop-filter: blur(14px);
+      }
+
+      .info-card,
+      .policy-card {
+        padding: 28px;
+      }
+
+      .card-icon {
+        width: 50px;
+        height: 50px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 16px;
+        border: 1px solid rgba(140, 248, 255, 0.2);
+        border-radius: 18px;
+        background: rgba(140, 248, 255, 0.1);
+        font-size: 24px;
+      }
+
+      .info-card h3,
+      .policy-card h3 {
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      .info-card p,
+      .policy-card p {
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .step-card {
+        padding: 24px;
+      }
+
+      .step-number {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 16px;
+        border-radius: 15px;
+        color: #03152b;
+        background: linear-gradient(135deg, var(--cyan), var(--violet));
+        font-weight: 950;
+      }
+
+      .step-card h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+
+      .step-card p {
+        color: var(--muted);
+        line-height: 1.7;
+        font-size: 15px;
+      }
+
+      .owner-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: center;
+        padding: 30px;
+        border: 1px solid rgba(140, 248, 255, 0.18);
+        border-radius: 32px;
+        background:
+          linear-gradient(135deg, rgba(140, 248, 255, 0.1), rgba(142, 116, 255, 0.08)),
+          rgba(14, 18, 34, 0.74);
+        box-shadow: var(--shadow);
+      }
+
+      .owner-panel h2 {
+        margin-bottom: 14px;
+        font-size: clamp(28px, 4vw, 44px);
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+      }
+
+      .owner-panel p {
+        margin-bottom: 22px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .server-card {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        background: #313338;
+      }
+
+      .server-card-header {
+        padding: 16px 18px;
+        background: #2b2d31;
+        color: #ffffff;
+        font-weight: 900;
+      }
+
+      .server-card-body {
+        padding: 18px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .server-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 13px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .server-row span {
+        color: #b5bac1;
+        font-size: 13px;
+      }
+
+      /* ---------- FAQ and footer ---------- */
+      .faq-list {
+        max-width: 900px;
+        margin: 0 auto;
+        display: grid;
+        gap: 14px;
+      }
+
+      .faq-item {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        background: rgba(14, 18, 34, 0.68);
+      }
+
+      .faq-question {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 20px 22px;
+        border: 0;
+        background: transparent;
+        color: #ffffff;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 900;
+        text-align: left;
+      }
+
+      .faq-question span:last-child {
+        color: var(--cyan);
+        font-size: 22px;
+      }
+
+      .faq-answer {
+        display: none;
+        padding: 0 22px 20px;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .faq-item.open .faq-answer {
+        display: block;
+      }
+
+      .site-footer {
+        padding: 54px 0 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(5, 7, 20, 0.82);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 0.8fr 0.8fr;
+        gap: 30px;
+        padding-bottom: 34px;
+      }
+
+      .footer-brand h2 {
+        margin-bottom: 12px;
+        font-size: 28px;
+      }
+
+      .footer-brand p,
+      .footer-bottom {
+        color: var(--soft);
+        line-height: 1.75;
+      }
+
+      .footer-links h3 {
+        margin-bottom: 14px;
+        font-size: 16px;
+      }
+
+      .footer-links ul {
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .footer-links a {
+        color: var(--muted);
+        font-weight: 750;
+      }
+
+      .footer-links a:hover {
+        color: var(--cyan);
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 14px;
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 980px) {
+        .hero-grid,
+        .owner-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .premium-orbit {
+          min-height: 420px;
+        }
+
+        .pricing-grid,
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .steps-grid,
+        .policy-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 820px) {
+        .menu-button {
+          display: inline-grid;
+          place-items: center;
+        }
+
+        .nav-links {
+          position: absolute;
+          left: 16px;
+          right: 16px;
+          top: 84px;
+          display: none;
+          flex-direction: column;
+          align-items: stretch;
+          padding: 12px;
+          border-radius: 22px;
+          background: rgba(8, 11, 22, 0.97);
+          box-shadow: var(--shadow);
+          backdrop-filter: blur(16px);
+        }
+
+        .nav-links.open {
+          display: flex;
+        }
+
+        .nav-links a {
+          text-align: center;
+        }
+
+        .brand-tag {
+          display: none;
+        }
+
+        .hero {
+          padding-top: 58px;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .shell {
+          width: min(100% - 22px, var(--container));
+        }
+
+        .hero-copy h1 {
+          font-size: clamp(38px, 14vw, 54px);
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .steps-grid,
+        .policy-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .premium-orbit {
+          min-height: 360px;
+        }
+
+        .gem-core,
+        .price-card,
+        .owner-panel {
+          padding: 22px;
+        }
+      }
+
+      @keyframes slowRotate {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes gemFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-2deg);
+        }
+
+        50% {
+          transform: translateY(-8px) rotate(2deg);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      body.motion-off .orbital-ring,
+      body.motion-off .gem-badge {
+        animation: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="bgCanvas" aria-hidden="true"></canvas>
+    <div class="soft-glow" aria-hidden="true"></div>
+    <div class="soft-glow two" aria-hidden="true"></div>
+
+    <!-- =========================================================
+         HEADER
+         ========================================================= -->
+    <header class="site-header">
+      <div class="shell nav-shell">
+        <a class="brand" href="index.html" aria-label="Aureon home">
+          <canvas id="brandLogo" width="128" height="128" aria-hidden="true"></canvas>
+          <span class="brand-copy">
+            <span class="brand-name gradient-text">Aureon</span>
+            <span class="brand-tag" data-i18n="brandTag">RPG & Economy Bot</span>
+          </span>
+        </a>
+
+        <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+          <a href="index.html" data-i18n="navHome">Home</a>
+          <a href="commands.html" data-i18n="navCommands">Commands</a>
+          <a href="premium.html" class="active" data-i18n="navPremium">Premium</a>
+          <a href="terms.html" data-i18n="navTerms">Terms</a>
+          <a href="privacy.html" data-i18n="navPrivacy">Privacy</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="motion-button" id="motionToggle" type="button" aria-label="Toggle visual effects">
+            ✨
+          </button>
+
+          <div class="lang-selector" id="langSelector">
+            <button class="lang-button" id="langButton" type="button" aria-label="Choose language">
+              <span id="currentFlag">🇺🇸</span>
+              <span id="currentLang">EN</span>
+            </button>
+
+            <div class="lang-dropdown" id="langDropdown">
+              <button type="button" data-lang="en">🇺🇸 EN</button>
+              <button type="button" data-lang="ro">🇷🇴 RO</button>
+              <button type="button" data-lang="es">🇪🇸 ES</button>
+              <button type="button" data-lang="fr">🇫🇷 FR</button>
+              <button type="button" data-lang="de">🇩🇪 DE</button>
+              <button type="button" data-lang="it">🇮🇹 IT</button>
+              <button type="button" data-lang="pt">🇵🇹 PT</button>
+              <button type="button" data-lang="ru">🇷🇺 RU</button>
+              <button type="button" data-lang="jp">🇯🇵 JP</button>
+              <button type="button" data-lang="hi">🇮🇳 HI</button>
+            </div>
+          </div>
+
+          <button class="menu-button" id="menuButton" type="button" aria-label="Open menu">
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- =========================================================
+           HERO
+           ========================================================= -->
+      <section class="hero" id="top">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow" data-i18n="heroEyebrow">💎 Premium Gems</span>
+            <h1 data-i18n="heroTitle">Support Aureon and prepare your server for future VIP perks.</h1>
+            <p data-i18n="heroDescription">
+              Gems are Aureon’s premium currency. They are designed to support the bot’s development while giving servers a clean way to unlock optional VIP access, profile extras and community rewards later inside Discord.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button primary" href="#packs" data-i18n="viewPacksButton">💎 View Gems Packs</a>
+              <a class="button secondary" id="supportButton" href="#" data-i18n="supportButton">💬 Ask in Support</a>
+            </div>
+
+            <div class="hero-notes">
+              <span class="note-pill" data-i18n="noteOne">✅ Core bot features stay accessible</span>
+              <span class="note-pill" data-i18n="noteTwo">🛡️ Fair perks, not aggressive paywalls</span>
+              <span class="note-pill" data-i18n="noteThree">🌍 Multi-language experience</span>
+            </div>
+          </div>
+
+          <div class="premium-orbit" aria-label="Premium Gems preview">
+            <div class="orbital-ring" aria-hidden="true"></div>
+
+            <div class="gem-core">
+              <div class="gem-badge" aria-hidden="true">💎</div>
+              <h2 class="gradient-text" data-i18n="coreTitle">Aureon Gems</h2>
+              <p data-i18n="coreText">
+                A simple premium balance prepared for VIP access, cosmetics and extra server rewards.
+              </p>
+
+              <div class="discord-preview">
+                <div class="discord-topbar" data-i18n="discordPreviewTop"># premium-preview</div>
+                <div class="discord-message">
+                  <div class="discord-author">
+                    <span class="bot-avatar"></span>
+                    <span>Aureon</span>
+                    <span class="bot-tag">BOT</span>
+                  </div>
+                  <div class="discord-embed">
+                    <strong data-i18n="discordEmbedTitle">💎 Gems Balance</strong><br />
+                    <span data-i18n="discordEmbedText">You have 750 Gems ready for future VIP rewards.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PREMIUM PACKS
+           ========================================================= -->
+      <section class="section" id="packs">
+        <div class="shell">
+          <div class="section-heading">
+            <span class="eyebrow" data-i18n="packsEyebrow">Simple packages</span>
+            <h2 data-i18n="packsTitle">Choose the amount of Gems that fits your server.</h2>
+            <p data-i18n="packsDescription">
+              The packages are intentionally small and easy to understand. They can be used later for server VIP access and optional Aureon perks once the system becomes available.
+            </p>
+          </div>
+
+          <div class="pricing-grid">
+            <!-- Gems I -->
+            <article class="price-card">
+              <div class="pack-icon" aria-hidden="true">💠</div>
+              <h3>Gems I</h3>
+              <p class="pack-subtitle" data-i18n="gemsOneSubtitle">
+                A light starter pack for users who want to try premium perks without committing too much.
+              </p>
+
+              <div class="price-row">
+                <strong class="price">€2.99</strong>
+                <span class="currency-note" data-i18n="oneTime">one-time</span>
+              </div>
+
+              <div class="gem-amount">
+                <strong>300 💎</strong>
+                <span data-i18n="gemsLabel">Gems</span>
+              </div>
+
+              <ul class="feature-list">
+                <li data-i18n="gemsOneFeatureOne">Good for first VIP tests and small profile upgrades.</li>
+                <li data-i18n="gemsOneFeatureTwo">Useful for casual members who want a simple premium start.</li>
+                <li data-i18n="gemsOneFeatureThree">Keeps the entry price low and easy to understand.</li>
+              </ul>
+
+              <a class="button secondary" href="#info" data-i18n="learnMoreButton">Learn More</a>
+            </article>
+
+            <!-- Gems II -->
+            <article class="price-card featured">
+              <span class="popular-label" data-i18n="popularLabel">Recommended</span>
+              <div class="pack-icon" aria-hidden="true">💎</div>
+              <h3>Gems II</h3>
+              <p class="pack-subtitle" data-i18n="gemsTwoSubtitle">
+                A balanced pack for active members who plan to use VIP features more often.
+              </p>
+
+              <div class="price-row">
+                <strong class="price">€5.99</strong>
+                <span class="currency-note" data-i18n="oneTime">one-time</span>
+              </div>
+
+              <div class="gem-amount">
+                <strong>750 💎</strong>
+                <span data-i18n="gemsLabel">Gems</span>
+              </div>
+
+              <ul class="feature-list">
+                <li data-i18n="gemsTwoFeatureOne">A better amount for future VIP access and recurring perks.</li>
+                <li data-i18n="gemsTwoFeatureTwo">Designed for users who enjoy economy, profile and activity systems.</li>
+                <li data-i18n="gemsTwoFeatureThree">A practical middle option without being expensive.</li>
+              </ul>
+
+              <a class="button primary" href="#info" data-i18n="learnMoreButton">Learn More</a>
+            </article>
+
+            <!-- Gems III -->
+            <article class="price-card">
+              <div class="pack-icon" aria-hidden="true">👑</div>
+              <h3>Gems III</h3>
+              <p class="pack-subtitle" data-i18n="gemsThreeSubtitle">
+                A larger pack for members or server owners who want more flexibility from the start.
+              </p>
+
+              <div class="price-row">
+                <strong class="price">€9.99</strong>
+                <span class="currency-note" data-i18n="oneTime">one-time</span>
+              </div>
+
+              <div class="gem-amount">
+                <strong>1,600 💎</strong>
+                <span data-i18n="gemsLabel">Gems</span>
+              </div>
+
+              <ul class="feature-list">
+                <li data-i18n="gemsThreeFeatureOne">Prepared for longer VIP periods or multiple premium choices.</li>
+                <li data-i18n="gemsThreeFeatureTwo">Helpful for users who want a larger balance ready in advance.</li>
+                <li data-i18n="gemsThreeFeatureThree">Best for active communities planning regular events and rewards.</li>
+              </ul>
+
+              <a class="button secondary" href="#info" data-i18n="learnMoreButton">Learn More</a>
+            </article>
+          </div>
+
+          <p class="fine-print" data-i18n="priceNote">
+            Prices are shown in EUR. Local taxes, payment fees or regional differences may apply at checkout when purchases become available.
+          </p>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           WHAT GEMS CAN UNLOCK
+           ========================================================= -->
+      <section class="section" id="info">
+        <div class="shell">
+          <div class="section-heading">
+            <span class="eyebrow" data-i18n="useEyebrow">Planned usage</span>
+            <h2 data-i18n="useTitle">What Gems are meant to unlock later.</h2>
+            <p data-i18n="useDescription">
+              Aureon Premium is planned around optional upgrades. The goal is to make support feel useful and fair, while keeping the bot’s main systems available for communities that use the free version.
+            </p>
+          </div>
+
+          <div class="info-grid">
+            <article class="info-card">
+              <div class="card-icon" aria-hidden="true">👑</div>
+              <h3 data-i18n="useOneTitle">Server VIP</h3>
+              <p data-i18n="useOneText">
+                Gems can later be redeemed for VIP access on servers that enable Aureon’s premium system. Server owners may decide what VIP includes for their community.
+              </p>
+            </article>
+
+            <article class="info-card">
+              <div class="card-icon" aria-hidden="true">🪪</div>
+              <h3 data-i18n="useTwoTitle">Profile extras</h3>
+              <p data-i18n="useTwoText">
+                Future profile perks may include visual badges, profile themes, small identity upgrades and other cosmetic details that help members personalize their presence.
+              </p>
+            </article>
+
+            <article class="info-card">
+              <div class="card-icon" aria-hidden="true">🎁</div>
+              <h3 data-i18n="useThreeTitle">Community rewards</h3>
+              <p data-i18n="useThreeText">
+                Gems can support special server events, limited rewards, giveaway entries or controlled economy bonuses depending on how each server configures Aureon.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           HOW IT WORKS
+           ========================================================= -->
+      <section class="section">
+        <div class="shell">
+          <div class="section-heading">
+            <span class="eyebrow" data-i18n="stepsEyebrow">Flow</span>
+            <h2 data-i18n="stepsTitle">A simple process inside Discord.</h2>
+            <p data-i18n="stepsDescription">
+              The premium system is planned to be easy to follow. Users should be able to understand what they own, what they can redeem and what is active on their server.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card">
+              <div class="step-number">1</div>
+              <h3 data-i18n="stepOneTitle">Buy Gems</h3>
+              <p data-i18n="stepOneText">Pick a Gems package and complete the purchase once the payment system is enabled.</p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-number">2</div>
+              <h3 data-i18n="stepTwoTitle">Check balance</h3>
+              <p data-i18n="stepTwoText">Use Aureon inside Discord to view your Gems balance and available premium options.</p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-number">3</div>
+              <h3 data-i18n="stepThreeTitle">Redeem perks</h3>
+              <p data-i18n="stepThreeText">Spend Gems on VIP access or other optional rewards supported by your server.</p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-number">4</div>
+              <h3 data-i18n="stepFourTitle">Manage clearly</h3>
+              <p data-i18n="stepFourText">Server staff can keep premium settings organized without confusing members.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PREMIUM PRINCIPLES
+           ========================================================= -->
+      <section class="section">
+        <div class="shell">
+          <div class="section-heading">
+            <span class="eyebrow" data-i18n="policyEyebrow">Principles</span>
+            <h2 data-i18n="policyTitle">Premium should feel useful, not forced.</h2>
+            <p data-i18n="policyDescription">
+              Aureon’s premium direction is built around transparency. The free version should remain helpful, while Gems provide optional support and extra comfort for users who want more.
+            </p>
+          </div>
+
+          <div class="policy-grid">
+            <article class="policy-card">
+              <div class="card-icon" aria-hidden="true">🧭</div>
+              <h3 data-i18n="policyOneTitle">Clear value</h3>
+              <p data-i18n="policyOneText">
+                Each Gems package should be understandable before purchase. Members should know what they are buying and how it may be used later.
+              </p>
+            </article>
+
+            <article class="policy-card">
+              <div class="card-icon" aria-hidden="true">⚖️</div>
+              <h3 data-i18n="policyTwoTitle">Fair server balance</h3>
+              <p data-i18n="policyTwoText">
+                Premium rewards should avoid damaging the server economy. Server owners can shape VIP benefits in a way that fits their community.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           SERVER OWNER PANEL
+           ========================================================= -->
+      <section class="section">
+        <div class="shell">
+          <div class="owner-panel">
+            <div>
+              <span class="eyebrow" data-i18n="ownerEyebrow">For server owners</span>
+              <h2 data-i18n="ownerTitle">VIP can become part of your server’s identity.</h2>
+              <p data-i18n="ownerDescription">
+                When VIP support is enabled, server owners can connect premium rewards with roles, events, economy bonuses or visual identity. The goal is to make premium feel like a natural server feature, not a separate confusing system.
+              </p>
+              <a class="button primary" id="ownerSupportButton" href="#" data-i18n="ownerButton">💬 Talk with Support</a>
+            </div>
+
+            <div class="server-card" aria-label="Aureon VIP setup preview">
+              <div class="server-card-header" data-i18n="serverCardTitle">Aureon VIP Setup Preview</div>
+              <div class="server-card-body">
+                <div class="server-row">
+                  <strong data-i18n="serverRowOneTitle">VIP Role</strong>
+                  <span data-i18n="serverRowOneText">Connected</span>
+                </div>
+                <div class="server-row">
+                  <strong data-i18n="serverRowTwoTitle">Profile Badge</strong>
+                  <span data-i18n="serverRowTwoText">Enabled</span>
+                </div>
+                <div class="server-row">
+                  <strong data-i18n="serverRowThreeTitle">Economy Boost</strong>
+                  <span data-i18n="serverRowThreeText">Balanced</span>
+                </div>
+                <div class="server-row">
+                  <strong data-i18n="serverRowFourTitle">Event Rewards</strong>
+                  <span data-i18n="serverRowFourText">Optional</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           FAQ
+           ========================================================= -->
+      <section class="section" id="faq">
+        <div class="shell">
+          <div class="section-heading">
+            <span class="eyebrow" data-i18n="faqEyebrow">Questions</span>
+            <h2 data-i18n="faqTitle">Premium Gems FAQ</h2>
+            <p data-i18n="faqDescription">A few clear answers before Gems and VIP become available through Aureon.</p>
+          </div>
+
+          <div class="faq-list">
+            <article class="faq-item open">
+              <button class="faq-question" type="button">
+                <span data-i18n="faqOneQuestion">Can I buy VIP directly with Gems?</span>
+                <span>+</span>
+              </button>
+              <p class="faq-answer" data-i18n="faqOneAnswer">
+                That is the planned direction. Gems are prepared as a currency that can later be redeemed for VIP access or other premium choices inside supported servers.
+              </p>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-question" type="button">
+                <span data-i18n="faqTwoQuestion">Will free users still be able to use Aureon?</span>
+                <span>+</span>
+              </button>
+              <p class="faq-answer" data-i18n="faqTwoAnswer">
+                Yes. Premium is intended to add optional extras, not remove the basic experience from normal users or smaller communities.
+              </p>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-question" type="button">
+                <span data-i18n="faqThreeQuestion">Are these prices final?</span>
+                <span>+</span>
+              </button>
+              <p class="faq-answer" data-i18n="faqThreeAnswer">
+                The displayed prices are meant to be realistic and low. They may still change before the purchase system is active, especially if payment fees or taxes require adjustments.
+              </p>
+            </article>
+
+            <article class="faq-item">
+              <button class="faq-question" type="button">
+                <span data-i18n="faqFourQuestion">Can server owners choose what VIP gives?</span>
+                <span>+</span>
+              </button>
+              <p class="faq-answer" data-i18n="faqFourAnswer">
+                The plan is to give servers controlled options. This helps each community keep its own balance while still using the same Aureon premium foundation.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+    <footer class="site-footer">
+      <div class="shell">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h2 class="gradient-text">Aureon</h2>
+            <p data-i18n="footerDescription">
+              Aureon is a Discord bot focused on economy, RPG progression, moderation, tickets, activity and community systems. Premium Gems are designed to support future optional perks without changing the bot’s core purpose.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h3 data-i18n="footerNavigation">Navigation</h3>
+            <ul>
+              <li><a href="index.html" data-i18n="navHome">Home</a></li>
+              <li><a href="commands.html" data-i18n="navCommands">Commands</a></li>
+              <li><a href="premium.html" data-i18n="navPremium">Premium</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links">
+            <h3 data-i18n="footerLegal">Legal</h3>
+            <ul>
+              <li><a href="terms.html" data-i18n="navTerms">Terms</a></li>
+              <li><a href="privacy.html" data-i18n="navPrivacy">Privacy</a></li>
+              <li><a id="footerSupportButton" href="#" data-i18n="supportLink">Support Server</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 Aureon. All rights reserved.</span>
+          <span data-i18n="footerBottom">Built for Discord communities that enjoy progression, economy and organized server tools.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /* =========================================================
+         1. Editable project links
+         Replace the support link when you have the real Discord invite.
+         ========================================================= */
+      const SUPPORT_SERVER_URL = "https://discord.gg/YOUR_SUPPORT_SERVER";
+
+      /* =========================================================
+         2. Language data
+         Main language is EN. The selected language is saved locally.
+         ========================================================= */
+      const flags = {
+        en: "🇺🇸",
+        ro: "🇷🇴",
+        es: "🇪🇸",
+        fr: "🇫🇷",
+        de: "🇩🇪",
+        it: "🇮🇹",
+        pt: "🇵🇹",
+        ru: "🇷🇺",
+        jp: "🇯🇵",
+        hi: "🇮🇳"
+      };
+
+      const labels = {
+        en: "EN",
+        ro: "RO",
+        es: "ES",
+        fr: "FR",
+        de: "DE",
+        it: "IT",
+        pt: "PT",
+        ru: "RU",
+        jp: "JP",
+        hi: "HI"
+      };
+
+      const translations = {
+        en: {
+          brandTag: "RPG & Economy Bot",
+          navHome: "Home",
+          navCommands: "Commands",
+          navPremium: "Premium",
+          navTerms: "Terms",
+          navPrivacy: "Privacy",
+          heroEyebrow: "💎 Premium Gems",
+          heroTitle: "Support Aureon and prepare your server for future VIP perks.",
+          heroDescription:
+            "Gems are Aureon’s premium currency. They are designed to support the bot’s development while giving servers a clean way to unlock optional VIP access, profile extras and community rewards later inside Discord.",
+          viewPacksButton: "💎 View Gems Packs",
+          supportButton: "💬 Ask in Support",
+          noteOne: "✅ Core bot features stay accessible",
+          noteTwo: "🛡️ Fair perks, not aggressive paywalls",
+          noteThree: "🌍 Multi-language experience",
+          coreTitle: "Aureon Gems",
+          coreText: "A simple premium balance prepared for VIP access, cosmetics and extra server rewards.",
+          discordPreviewTop: "# premium-preview",
+          discordEmbedTitle: "💎 Gems Balance",
+          discordEmbedText: "You have 750 Gems ready for future VIP rewards.",
+          packsEyebrow: "Simple packages",
+          packsTitle: "Choose the amount of Gems that fits your server.",
+          packsDescription:
+            "The packages are intentionally small and easy to understand. They can be used later for server VIP access and optional Aureon perks once the system becomes available.",
+          oneTime: "one-time",
+          gemsLabel: "Gems",
+          popularLabel: "Recommended",
+          gemsOneSubtitle: "A light starter pack for users who want to try premium perks without committing too much.",
+          gemsOneFeatureOne: "Good for first VIP tests and small profile upgrades.",
+          gemsOneFeatureTwo: "Useful for casual members who want a simple premium start.",
+          gemsOneFeatureThree: "Keeps the entry price low and easy to understand.",
+          gemsTwoSubtitle: "A balanced pack for active members who plan to use VIP features more often.",
+          gemsTwoFeatureOne: "A better amount for future VIP access and recurring perks.",
+          gemsTwoFeatureTwo: "Designed for users who enjoy economy, profile and activity systems.",
+          gemsTwoFeatureThree: "A practical middle option without being expensive.",
+          gemsThreeSubtitle: "A larger pack for members or server owners who want more flexibility from the start.",
+          gemsThreeFeatureOne: "Prepared for longer VIP periods or multiple premium choices.",
+          gemsThreeFeatureTwo: "Helpful for users who want a larger balance ready in advance.",
+          gemsThreeFeatureThree: "Best for active communities planning regular events and rewards.",
+          learnMoreButton: "Learn More",
+          priceNote:
+            "Prices are shown in EUR. Local taxes, payment fees or regional differences may apply at checkout when purchases become available.",
+          useEyebrow: "Planned usage",
+          useTitle: "What Gems are meant to unlock later.",
+          useDescription:
+            "Aureon Premium is planned around optional upgrades. The goal is to make support feel useful and fair, while keeping the bot’s main systems available for communities that use the free version.",
+          useOneTitle: "Server VIP",
+          useOneText:
+            "Gems can later be redeemed for VIP access on servers that enable Aureon’s premium system. Server owners may decide what VIP includes for their community.",
+          useTwoTitle: "Profile extras",
+          useTwoText:
+            "Future profile perks may include visual badges, profile themes, small identity upgrades and other cosmetic details that help members personalize their presence.",
+          useThreeTitle: "Community rewards",
+          useThreeText:
+            "Gems can support special server events, limited rewards, giveaway entries or controlled economy bonuses depending on how each server configures Aureon.",
+          stepsEyebrow: "Flow",
+          stepsTitle: "A simple process inside Discord.",
+          stepsDescription:
+            "The premium system is planned to be easy to follow. Users should be able to understand what they own, what they can redeem and what is active on their server.",
+          stepOneTitle: "Buy Gems",
+          stepOneText: "Pick a Gems package and complete the purchase once the payment system is enabled.",
+          stepTwoTitle: "Check balance",
+          stepTwoText: "Use Aureon inside Discord to view your Gems balance and available premium options.",
+          stepThreeTitle: "Redeem perks",
+          stepThreeText: "Spend Gems on VIP access or other optional rewards supported by your server.",
+          stepFourTitle: "Manage clearly",
+          stepFourText: "Server staff can keep premium settings organized without confusing members.",
+          policyEyebrow: "Principles",
+          policyTitle: "Premium should feel useful, not forced.",
+          policyDescription:
+            "Aureon’s premium direction is built around transparency. The free version should remain helpful, while Gems provide optional support and extra comfort for users who want more.",
+          policyOneTitle: "Clear value",
+          policyOneText:
+            "Each Gems package should be understandable before purchase. Members should know what they are buying and how it may be used later.",
+          policyTwoTitle: "Fair server balance",
+          policyTwoText:
+            "Premium rewards should avoid damaging the server economy. Server owners can shape VIP benefits in a way that fits their community.",
+          ownerEyebrow: "For server owners",
+          ownerTitle: "VIP can become part of your server’s identity.",
+          ownerDescription:
+            "When VIP support is enabled, server owners can connect premium rewards with roles, events, economy bonuses or visual identity. The goal is to make premium feel like a natural server feature, not a separate confusing system.",
+          ownerButton: "💬 Talk with Support",
+          serverCardTitle: "Aureon VIP Setup Preview",
+          serverRowOneTitle: "VIP Role",
+          serverRowOneText: "Connected",
+          serverRowTwoTitle: "Profile Badge",
+          serverRowTwoText: "Enabled",
+          serverRowThreeTitle: "Economy Boost",
+          serverRowThreeText: "Balanced",
+          serverRowFourTitle: "Event Rewards",
+          serverRowFourText: "Optional",
+          faqEyebrow: "Questions",
+          faqTitle: "Premium Gems FAQ",
+          faqDescription: "A few clear answers before Gems and VIP become available through Aureon.",
+          faqOneQuestion: "Can I buy VIP directly with Gems?",
+          faqOneAnswer:
+            "That is the planned direction. Gems are prepared as a currency that can later be redeemed for VIP access or other premium choices inside supported servers.",
+          faqTwoQuestion: "Will free users still be able to use Aureon?",
+          faqTwoAnswer:
+            "Yes. Premium is intended to add optional extras, not remove the basic experience from normal users or smaller communities.",
+          faqThreeQuestion: "Are these prices final?",
+          faqThreeAnswer:
+            "The displayed prices are meant to be realistic and low. They may still change before the purchase system is active, especially if payment fees or taxes require adjustments.",
+          faqFourQuestion: "Can server owners choose what VIP gives?",
+          faqFourAnswer:
+            "The plan is to give servers controlled options. This helps each community keep its own balance while still using the same Aureon premium foundation.",
+          footerDescription:
+            "Aureon is a Discord bot focused on economy, RPG progression, moderation, tickets, activity and community systems. Premium Gems are designed to support future optional perks without changing the bot’s core purpose.",
+          footerNavigation: "Navigation",
+          footerLegal: "Legal",
+          supportLink: "Support Server",
+          footerBottom: "Built for Discord communities that enjoy progression, economy and organized server tools."
+        },
+
+        ro: {
+          brandTag: "Bot RPG & Economie",
+          navHome: "Acasă",
+          navCommands: "Comenzi",
+          navPremium: "Premium",
+          navTerms: "Termeni",
+          navPrivacy: "Confidențialitate",
+          heroEyebrow: "💎 Gems Premium",
+          heroTitle: "Susține Aureon și pregătește serverul pentru viitoare beneficii VIP.",
+          heroDescription:
+            "Gems reprezintă moneda premium Aureon. Sunt gândite să susțină dezvoltarea botului și să ofere serverelor o metodă clară prin care pot debloca ulterior VIP, extra opțiuni pentru profil și recompense de comunitate în Discord.",
+          viewPacksButton: "💎 Vezi pachetele Gems",
+          supportButton: "💬 Întreabă pe Support",
+          noteOne: "✅ Funcțiile de bază rămân accesibile",
+          noteTwo: "🛡️ Beneficii corecte, fără paywall agresiv",
+          noteThree: "🌍 Experiență multi-language",
+          coreTitle: "Aureon Gems",
+          coreText: "Un sold premium simplu, pregătit pentru VIP, cosmetice și recompense extra pe server.",
+          discordPreviewTop: "# premium-preview",
+          discordEmbedTitle: "💎 Sold Gems",
+          discordEmbedText: "Ai 750 Gems pregătite pentru viitoare recompense VIP.",
+          packsEyebrow: "Pachete simple",
+          packsTitle: "Alege numărul de Gems potrivit pentru serverul tău.",
+          packsDescription:
+            "Pachetele sunt mici, clare și ușor de înțeles. Mai târziu vor putea fi folosite pentru VIP pe server și beneficii opționale Aureon.",
+          oneTime: "plată unică",
+          gemsLabel: "Gems",
+          popularLabel: "Recomandat",
+          gemsOneSubtitle: "Un pachet de început pentru utilizatorii care vor să testeze premium fără o investiție mare.",
+          gemsOneFeatureOne: "Bun pentru primele teste VIP și mici upgrade-uri de profil.",
+          gemsOneFeatureTwo: "Potrivit pentru membri casual care vor un start simplu.",
+          gemsOneFeatureThree: "Păstrează prețul de intrare mic și clar.",
+          gemsTwoSubtitle: "Un pachet echilibrat pentru membri activi care vor folosi mai des beneficiile VIP.",
+          gemsTwoFeatureOne: "O cantitate mai bună pentru VIP și beneficii recurente.",
+          gemsTwoFeatureTwo: "Creat pentru utilizatori care folosesc economia, profilul și activitatea.",
+          gemsTwoFeatureThree: "O variantă de mijloc practică, fără preț mare.",
+          gemsThreeSubtitle: "Un pachet mai mare pentru membri sau owneri care vor mai multă flexibilitate.",
+          gemsThreeFeatureOne: "Pregătit pentru perioade VIP mai lungi sau mai multe alegeri premium.",
+          gemsThreeFeatureTwo: "Util pentru cei care vor un sold mai mare de la început.",
+          gemsThreeFeatureThree: "Bun pentru comunități active cu evenimente și recompense regulate.",
+          learnMoreButton: "Află mai mult",
+          priceNote:
+            "Prețurile sunt afișate în EUR. Taxele locale, comisioanele de plată sau diferențele regionale pot apărea la checkout când achizițiile devin disponibile.",
+          useEyebrow: "Utilizare planificată",
+          useTitle: "Ce vor putea debloca Gems mai târziu.",
+          useDescription:
+            "Aureon Premium este gândit în jurul upgrade-urilor opționale. Scopul este ca susținerea să fie utilă și corectă, iar sistemele principale ale botului să rămână disponibile pentru comunitățile free.",
+          useOneTitle: "VIP pe server",
+          useOneText:
+            "Gems vor putea fi folosite ulterior pentru acces VIP pe serverele care activează sistemul premium Aureon. Ownerii pot decide ce include VIP pentru comunitatea lor.",
+          useTwoTitle: "Extra pentru profil",
+          useTwoText:
+            "Beneficiile viitoare pot include badge-uri, teme de profil, mici upgrade-uri vizuale și detalii cosmetice pentru identitatea membrilor.",
+          useThreeTitle: "Recompense de comunitate",
+          useThreeText:
+            "Gems pot susține evenimente speciale, recompense limitate, intrări la giveaway sau bonusuri de economie controlate de setările serverului.",
+          stepsEyebrow: "Flow",
+          stepsTitle: "Un proces simplu în Discord.",
+          stepsDescription:
+            "Sistemul premium este planificat să fie ușor de urmărit. Utilizatorii trebuie să știe ce au, ce pot folosi și ce este activ pe server.",
+          stepOneTitle: "Cumperi Gems",
+          stepOneText: "Alegi un pachet Gems și finalizezi achiziția când sistemul de plată este activ.",
+          stepTwoTitle: "Verifici soldul",
+          stepTwoText: "Folosești Aureon în Discord pentru a vedea soldul de Gems și opțiunile premium.",
+          stepThreeTitle: "Folosești beneficii",
+          stepThreeText: "Cheltui Gems pe VIP sau alte recompense opționale suportate de server.",
+          stepFourTitle: "Gestionare clară",
+          stepFourText: "Staff-ul poate ține setările premium organizate fără confuzie pentru membri.",
+          policyEyebrow: "Principii",
+          policyTitle: "Premium trebuie să fie util, nu forțat.",
+          policyDescription:
+            "Direcția premium Aureon este construită pe transparență. Versiunea free rămâne utilă, iar Gems oferă suport opțional și confort extra celor care vor mai mult.",
+          policyOneTitle: "Valoare clară",
+          policyOneText:
+            "Fiecare pachet Gems trebuie să fie ușor de înțeles înainte de cumpărare. Membrii trebuie să știe ce cumpără și cum poate fi folosit.",
+          policyTwoTitle: "Echilibru corect",
+          policyTwoText:
+            "Recompensele premium nu ar trebui să strice economia serverului. Ownerii pot adapta beneficiile VIP după comunitatea lor.",
+          ownerEyebrow: "Pentru server owneri",
+          ownerTitle: "VIP poate deveni parte din identitatea serverului tău.",
+          ownerDescription:
+            "Când suportul VIP este activ, ownerii pot lega recompense premium de roluri, evenimente, bonusuri de economie sau identitate vizuală. Scopul este ca premium să pară natural, nu un sistem separat și confuz.",
+          ownerButton: "💬 Vorbește cu Support",
+          serverCardTitle: "Preview Setup VIP Aureon",
+          serverRowOneTitle: "Rol VIP",
+          serverRowOneText: "Conectat",
+          serverRowTwoTitle: "Badge profil",
+          serverRowTwoText: "Activat",
+          serverRowThreeTitle: "Boost economie",
+          serverRowThreeText: "Echilibrat",
+          serverRowFourTitle: "Recompense evenimente",
+          serverRowFourText: "Opțional",
+          faqEyebrow: "Întrebări",
+          faqTitle: "FAQ Premium Gems",
+          faqDescription: "Câteva răspunsuri clare înainte ca Gems și VIP să fie disponibile prin Aureon.",
+          faqOneQuestion: "Pot cumpăra VIP direct cu Gems?",
+          faqOneAnswer:
+            "Aceasta este direcția planificată. Gems sunt pregătite ca monedă care poate fi folosită ulterior pentru VIP sau alte opțiuni premium în serverele suportate.",
+          faqTwoQuestion: "Utilizatorii free mai pot folosi Aureon?",
+          faqTwoAnswer:
+            "Da. Premium adaugă extra opțiuni, nu elimină experiența de bază pentru utilizatorii normali sau comunitățile mai mici.",
+          faqThreeQuestion: "Prețurile sunt finale?",
+          faqThreeAnswer:
+            "Prețurile afișate sunt gândite să fie realiste și mici. Se pot modifica înainte ca sistemul de achiziție să fie activ, mai ales dacă taxele sau comisioanele cer ajustări.",
+          faqFourQuestion: "Ownerii pot alege ce oferă VIP?",
+          faqFourAnswer:
+            "Planul este să oferim serverelor opțiuni controlate. Asta ajută fiecare comunitate să își păstreze echilibrul folosind aceeași bază premium Aureon.",
+          footerDescription:
+            "Aureon este un bot Discord axat pe economie, progres RPG, moderare, tickets, activitate și sisteme de comunitate. Premium Gems sunt create pentru beneficii opționale viitoare fără să schimbe scopul principal al botului.",
+          footerNavigation: "Navigare",
+          footerLegal: "Legal",
+          supportLink: "Server Support",
+          footerBottom: "Creat pentru comunități Discord care apreciază progresul, economia și uneltele de server organizate."
+        }
+      };
+
+      const fallbackTranslations = {
+        es: {
+          brandTag: "Bot RPG y Economía",
+          navHome: "Inicio",
+          navCommands: "Comandos",
+          navPremium: "Premium",
+          navTerms: "Términos",
+          navPrivacy: "Privacidad",
+          heroEyebrow: "💎 Gems Premium",
+          heroTitle: "Apoya Aureon y prepara tu servidor para futuros beneficios VIP.",
+          heroDescription: "Gems es la moneda premium de Aureon. Más adelante podrá usarse para VIP, extras de perfil y recompensas de comunidad en Discord.",
+          viewPacksButton: "💎 Ver paquetes Gems",
+          supportButton: "💬 Preguntar en soporte",
+          packsTitle: "Elige la cantidad de Gems para tu servidor.",
+          packsDescription: "Paquetes pequeños, claros y pensados para beneficios opcionales.",
+          oneTime: "pago único",
+          popularLabel: "Recomendado",
+          learnMoreButton: "Más información",
+          supportLink: "Servidor de soporte"
+        },
+
+        fr: {
+          brandTag: "Bot RPG & Économie",
+          navHome: "Accueil",
+          navCommands: "Commandes",
+          navPremium: "Premium",
+          navTerms: "Conditions",
+          navPrivacy: "Confidentialité",
+          heroEyebrow: "💎 Gems Premium",
+          heroTitle: "Soutenez Aureon et préparez votre serveur aux futurs avantages VIP.",
+          heroDescription: "Les Gems sont la monnaie premium d’Aureon pour de futurs accès VIP, extras de profil et récompenses serveur.",
+          viewPacksButton: "💎 Voir les packs Gems",
+          supportButton: "💬 Demander au support",
+          packsTitle: "Choisissez la quantité de Gems adaptée à votre serveur.",
+          packsDescription: "Des packs simples pour des avantages optionnels.",
+          oneTime: "paiement unique",
+          popularLabel: "Recommandé",
+          learnMoreButton: "En savoir plus",
+          supportLink: "Serveur support"
+        },
+
+        de: {
+          brandTag: "RPG & Economy Bot",
+          navHome: "Start",
+          navCommands: "Befehle",
+          navPremium: "Premium",
+          navTerms: "Bedingungen",
+          navPrivacy: "Datenschutz",
+          heroEyebrow: "💎 Premium Gems",
+          heroTitle: "Unterstütze Aureon und bereite deinen Server auf zukünftige VIP-Vorteile vor.",
+          heroDescription: "Gems sind Aureons Premium-Währung für zukünftige VIP-Zugänge, Profil-Extras und Serverbelohnungen.",
+          viewPacksButton: "💎 Gems-Pakete ansehen",
+          supportButton: "💬 Support fragen",
+          packsTitle: "Wähle die Gems-Menge, die zu deinem Server passt.",
+          packsDescription: "Einfache Pakete für optionale Vorteile.",
+          oneTime: "einmalig",
+          popularLabel: "Empfohlen",
+          learnMoreButton: "Mehr erfahren",
+          supportLink: "Support Server"
+        },
+
+        it: {
+          brandTag: "Bot RPG & Economia",
+          navHome: "Home",
+          navCommands: "Comandi",
+          navPremium: "Premium",
+          navTerms: "Termini",
+          navPrivacy: "Privacy",
+          heroEyebrow: "💎 Gems Premium",
+          heroTitle: "Supporta Aureon e prepara il server ai futuri vantaggi VIP.",
+          heroDescription: "Le Gems sono la valuta premium di Aureon per futuri VIP, extra profilo e ricompense community.",
+          viewPacksButton: "💎 Vedi pacchetti Gems",
+          supportButton: "💬 Chiedi al supporto",
+          packsTitle: "Scegli la quantità di Gems adatta al server.",
+          packsDescription: "Pacchetti semplici per vantaggi opzionali.",
+          oneTime: "pagamento unico",
+          popularLabel: "Consigliato",
+          learnMoreButton: "Scopri di più",
+          supportLink: "Server supporto"
+        },
+
+        pt: {
+          brandTag: "Bot RPG & Economia",
+          navHome: "Início",
+          navCommands: "Comandos",
+          navPremium: "Premium",
+          navTerms: "Termos",
+          navPrivacy: "Privacidade",
+          heroEyebrow: "💎 Gems Premium",
+          heroTitle: "Apoie o Aureon e prepare seu servidor para futuros benefícios VIP.",
+          heroDescription: "Gems é a moeda premium do Aureon para futuros VIP, extras de perfil e recompensas da comunidade.",
+          viewPacksButton: "💎 Ver pacotes Gems",
+          supportButton: "💬 Perguntar no suporte",
+          packsTitle: "Escolha a quantidade de Gems para seu servidor.",
+          packsDescription: "Pacotes simples para benefícios opcionais.",
+          oneTime: "pagamento único",
+          popularLabel: "Recomendado",
+          learnMoreButton: "Saiba mais",
+          supportLink: "Servidor suporte"
+        },
+
+        ru: {
+          brandTag: "RPG & Economy Bot",
+          navHome: "Главная",
+          navCommands: "Команды",
+          navPremium: "Premium",
+          navTerms: "Условия",
+          navPrivacy: "Приватность",
+          heroEyebrow: "💎 Premium Gems",
+          heroTitle: "Поддержите Aureon и подготовьте сервер к будущим VIP-возможностям.",
+          heroDescription: "Gems — премиальная валюта Aureon для будущего VIP, профилей и наград сообщества.",
+          viewPacksButton: "💎 Смотреть пакеты Gems",
+          supportButton: "💬 Спросить поддержку",
+          packsTitle: "Выберите количество Gems для сервера.",
+          packsDescription: "Простые пакеты для дополнительных преимуществ.",
+          oneTime: "разовый платеж",
+          popularLabel: "Рекомендуется",
+          learnMoreButton: "Подробнее",
+          supportLink: "Сервер поддержки"
+        },
+
+        jp: {
+          brandTag: "RPG & Economy Bot",
+          navHome: "ホーム",
+          navCommands: "コマンド",
+          navPremium: "Premium",
+          navTerms: "利用規約",
+          navPrivacy: "プライバシー",
+          heroEyebrow: "💎 Premium Gems",
+          heroTitle: "Aureonをサポートし、将来のVIP特典に備えましょう。",
+          heroDescription: "Gemsは将来のVIP、プロフィール追加機能、コミュニティ報酬のためのプレミアム通貨です。",
+          viewPacksButton: "💎 Gemsパックを見る",
+          supportButton: "💬 サポートに質問",
+          packsTitle: "サーバーに合うGems量を選びましょう。",
+          packsDescription: "任意特典のための分かりやすいパックです。",
+          oneTime: "一回払い",
+          popularLabel: "おすすめ",
+          learnMoreButton: "詳しく見る",
+          supportLink: "サポートサーバー"
+        },
+
+        hi: {
+          brandTag: "RPG & Economy Bot",
+          navHome: "होम",
+          navCommands: "कमांड्स",
+          navPremium: "Premium",
+          navTerms: "Terms",
+          navPrivacy: "Privacy",
+          heroEyebrow: "💎 Premium Gems",
+          heroTitle: "Aureon को सपोर्ट करें और सर्वर को future VIP perks के लिए तैयार करें।",
+          heroDescription: "Gems Aureon की premium currency है, जो future VIP, profile extras और community rewards के लिए बनाई गई है।",
+          viewPacksButton: "💎 Gems Packs देखें",
+          supportButton: "💬 Support में पूछें",
+          packsTitle: "अपने server के लिए सही Gems amount चुनें।",
+          packsDescription: "Optional perks के लिए simple packages।",
+          oneTime: "one-time",
+          popularLabel: "Recommended",
+          learnMoreButton: "Learn More",
+          supportLink: "Support Server"
+        }
+      };
+
+      for (const lang in fallbackTranslations) {
+        translations[lang] = {
+          ...translations.en,
+          ...fallbackTranslations[lang]
+        };
+      }
+
+      function setLanguage(lang) {
+        const safeLang = translations[lang] ? lang : "en";
+        const dictionary = translations[safeLang];
+
+        document.documentElement.lang = safeLang === "jp" ? "ja" : safeLang;
+        document.getElementById("currentFlag").textContent = flags[safeLang];
+        document.getElementById("currentLang").textContent = labels[safeLang];
+
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.getAttribute("data-i18n");
+          if (dictionary[key]) {
+            element.textContent = dictionary[key];
+          }
+        });
+
+        document.querySelectorAll("#langDropdown button").forEach((button) => {
+          button.classList.toggle("active", button.dataset.lang === safeLang);
+        });
+
+        localStorage.setItem("aureon_language", safeLang);
+      }
+
+      /* =========================================================
+         3. Header interactions
+         ========================================================= */
+      const langSelector = document.getElementById("langSelector");
+      const langButton = document.getElementById("langButton");
+      const navLinks = document.getElementById("navLinks");
+      const menuButton = document.getElementById("menuButton");
+      const motionToggle = document.getElementById("motionToggle");
+
+      langButton.addEventListener("click", () => {
+        langSelector.classList.toggle("open");
+      });
+
+      document.querySelectorAll("#langDropdown button").forEach((button) => {
+        button.addEventListener("click", () => {
+          setLanguage(button.dataset.lang);
+          langSelector.classList.remove("open");
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!langSelector.contains(event.target)) {
+          langSelector.classList.remove("open");
+        }
+      });
+
+      menuButton.addEventListener("click", () => {
+        navLinks.classList.toggle("open");
+      });
+
+      motionToggle.addEventListener("click", () => {
+        document.body.classList.toggle("motion-off");
+        localStorage.setItem(
+          "aureon_motion_off",
+          document.body.classList.contains("motion-off") ? "yes" : "no"
+        );
+      });
+
+      document.querySelectorAll("#supportButton, #ownerSupportButton, #footerSupportButton").forEach((link) => {
+        link.href = SUPPORT_SERVER_URL;
+      });
+
+      /* =========================================================
+         4. FAQ accordion
+         ========================================================= */
+      document.querySelectorAll(".faq-question").forEach((button) => {
+        button.addEventListener("click", () => {
+          button.closest(".faq-item").classList.toggle("open");
+        });
+      });
+
+      /* =========================================================
+         5. Canvas logo
+         ========================================================= */
+      function drawAureonLogo(canvas) {
+        const ctx = canvas.getContext("2d");
+        const scale = canvas.width / 1024;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        ctx.scale(scale, scale);
+
+        const ringGradient = ctx.createLinearGradient(170, 150, 860, 890);
+        ringGradient.addColorStop(0, "#9CF7FF");
+        ringGradient.addColorStop(0.35, "#63CFFF");
+        ringGradient.addColorStop(0.7, "#4E8CFF");
+        ringGradient.addColorStop(1, "#8E74FF");
+
+        const fillGradient = ctx.createLinearGradient(280, 180, 720, 860);
+        fillGradient.addColorStop(0, "#F5FEFF");
+        fillGradient.addColorStop(0.18, "#B5F4FF");
+        fillGradient.addColorStop(0.55, "#71D2FF");
+        fillGradient.addColorStop(1, "#597BFF");
+
+        ctx.save();
+        ctx.shadowColor = "rgba(104, 188, 255, 0.38)";
+        ctx.shadowBlur = 28;
+        ctx.beginPath();
+        ctx.arc(512, 512, 380, 0, Math.PI * 2);
+        ctx.strokeStyle = ringGradient;
+        ctx.lineWidth = 42;
+        ctx.lineCap = "round";
+        ctx.stroke();
+
+        ctx.shadowBlur = 0;
+        ctx.beginPath();
+        ctx.arc(512, 512, 380, Math.PI * 0.18, Math.PI * 1.36);
+        ctx.strokeStyle = "rgba(255,255,255,0.28)";
+        ctx.lineWidth = 10;
+        ctx.lineCap = "round";
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+        ctx.shadowColor = "rgba(104, 188, 255, 0.34)";
+        ctx.shadowBlur = 28;
+        ctx.fillStyle = fillGradient;
+        ctx.beginPath();
+        ctx.moveTo(512, 204);
+        ctx.lineTo(738, 792);
+        ctx.lineTo(650, 792);
+        ctx.lineTo(587, 634);
+        ctx.lineTo(437, 634);
+        ctx.lineTo(374, 792);
+        ctx.lineTo(286, 792);
+        ctx.closePath();
+        ctx.fill();
+
+        const cut = new Path2D();
+        cut.moveTo(512, 320);
+        cut.lineTo(631, 619);
+        cut.lineTo(564, 619);
+        cut.lineTo(512, 481);
+        cut.lineTo(460, 619);
+        cut.lineTo(393, 619);
+        cut.closePath();
+
+        const cross = new Path2D();
+        cross.moveTo(442, 694);
+        cross.quadraticCurveTo(512, 648, 582, 694);
+        cross.quadraticCurveTo(512, 673, 442, 694);
+        cross.closePath();
+
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.fill(cut);
+        ctx.fill(cross);
+        ctx.restore();
+        ctx.restore();
+      }
+
+      drawAureonLogo(document.getElementById("brandLogo"));
+
+      const faviconCanvas = document.createElement("canvas");
+      faviconCanvas.width = 128;
+      faviconCanvas.height = 128;
+      drawAureonLogo(faviconCanvas);
+      document.getElementById("dynamic-favicon").href = faviconCanvas.toDataURL("image/png");
+
+      /* =========================================================
+         6. Lightweight animated background
+         ========================================================= */
+      const bgCanvas = document.getElementById("bgCanvas");
+      const bgCtx = bgCanvas.getContext("2d", { alpha: true });
+      const particles = [];
+      let lastFrame = 0;
+      let activeCanvas = true;
+
+      function resizeBackground() {
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        bgCanvas.width = Math.floor(window.innerWidth * ratio);
+        bgCanvas.height = Math.floor(window.innerHeight * ratio);
+        bgCanvas.style.width = `${window.innerWidth}px`;
+        bgCanvas.style.height = `${window.innerHeight}px`;
+        bgCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      }
+
+      function createParticles() {
+        particles.length = 0;
+        const count = window.innerWidth < 700 ? 46 : 74;
+
+        for (let i = 0; i < count; i += 1) {
+          particles.push({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            radius: Math.random() * 1.4 + 0.35,
+            speed: Math.random() * 0.22 + 0.08,
+            opacity: Math.random() * 0.55 + 0.12,
+            drift: Math.random() * 0.18 - 0.09
+          });
+        }
+      }
+
+      function renderBackground(time) {
+        if (!activeCanvas || document.body.classList.contains("motion-off")) {
+          requestAnimationFrame(renderBackground);
+          return;
+        }
+
+        if (time - lastFrame < 33) {
+          requestAnimationFrame(renderBackground);
+          return;
+        }
+
+        lastFrame = time;
+        bgCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        particles.forEach((particle) => {
+          bgCtx.beginPath();
+          bgCtx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+          bgCtx.fillStyle = `rgba(140, 248, 255, ${particle.opacity})`;
+          bgCtx.fill();
+
+          particle.y -= particle.speed;
+          particle.x += particle.drift;
+
+          if (particle.y < -10) {
+            particle.y = window.innerHeight + 10;
+            particle.x = Math.random() * window.innerWidth;
+          }
+
+          if (particle.x < -20) particle.x = window.innerWidth + 20;
+          if (particle.x > window.innerWidth + 20) particle.x = -20;
+        });
+
+        requestAnimationFrame(renderBackground);
+      }
+
+      window.addEventListener("resize", () => {
+        resizeBackground();
+        createParticles();
+      });
+
+      document.addEventListener("visibilitychange", () => {
+        activeCanvas = !document.hidden;
+      });
+
+      resizeBackground();
+      createParticles();
+      requestAnimationFrame(renderBackground);
+
+      /* =========================================================
+         7. Initial preferences
+         ========================================================= */
+      const savedLanguage = localStorage.getItem("aureon_language") || "en";
+      const savedMotion = localStorage.getItem("aureon_motion_off");
+
+      if (savedMotion === "yes") {
+        document.body.classList.add("motion-off");
+      }
+
+      setLanguage(savedLanguage);
+    </script>
+  </body>
+</html>
