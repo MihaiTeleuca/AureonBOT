@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PulseBot | The Ultimate Discord Bot</title>
+  <title>PulseBot | A Helping Hand for Your Server</title>
   
-  <!-- Iconita (Favicon) va fi generata automat de scriptul de mai jos folosind Canvas -->
   <link id="dynamic-favicon" rel="icon" type="image/png" href="">
 
   <style>
-    /* Reset & Base */
+    /* Reset & Bază */
     * { 
       box-sizing: border-box; 
       margin: 0; 
@@ -72,7 +71,6 @@
       font-weight: 600; 
       font-size: 16px;
       transition: all 0.3s ease; 
-      position: relative;
     }
     
     /* Meniu cu Gradient pe Hover */
@@ -83,13 +81,14 @@
       text-shadow: 0 0 15px rgba(140, 248, 255, 0.3);
     }
 
-    /* Language Flag Selector */
+    /* Selector de limbă */
     .lang-selector {
       position: relative;
       cursor: pointer;
       animation: floatLang 3s ease-in-out infinite;
       font-size: 24px;
       padding: 5px;
+      user-select: none;
     }
     .lang-dropdown {
       display: none;
@@ -100,28 +99,28 @@
       border-radius: 12px;
       padding: 10px;
       flex-direction: column;
-      gap: 8px;
-      min-width: 90px;
+      gap: 4px;
+      min-width: 100px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
     .lang-selector:hover .lang-dropdown { display: flex; }
     .lang-dropdown span { 
-      font-size: 16px; 
-      padding: 8px; 
+      font-size: 15px; 
+      padding: 8px 12px; 
       border-radius: 8px; 
       transition: background 0.2s; 
       color: #b7c2e6;
-      display: flex; gap: 8px; align-items: center;
+      display: flex; gap: 10px; align-items: center;
       font-weight: 500;
     }
     .lang-dropdown span:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
-    /* Main Content */
+    /* Conținut Principal */
     main { flex: 1; display: block; }
     
     /* Hero Section */
     .hero-section {
-      min-height: 80vh;
+      min-height: 75vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -140,10 +139,10 @@
       animation: fadeIn 1s ease-out;
     }
     
-    h1 { font-size: clamp(38px, 5vw, 56px); margin-bottom: 20px; letter-spacing: 0.02em; }
+    h1 { font-size: clamp(34px, 5vw, 48px); margin-bottom: 20px; letter-spacing: 0.01em; line-height: 1.2; }
     .hero-card p { color: #b7c2e6; line-height: 1.7; margin-bottom: 40px; font-size: 18px; }
 
-    /* Buttons */
+    /* Butoane */
     .actions { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
     .btn {
       text-decoration: none; display: inline-block;
@@ -182,9 +181,7 @@
     }
     .floating-discord:hover { border-color: #8cf8ff; }
 
-    /* --- New Sections to make page longer --- */
-    
-    /* Stats Section */
+    /* Secțiune Statistici */
     .stats-section {
       display: flex; justify-content: center; gap: 80px; flex-wrap: wrap;
       padding: 60px 20px;
@@ -199,16 +196,16 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
     }
-    .stat-item p { color: #8c9dc7; font-size: 18px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-item p { color: #8c9dc7; font-size: 16px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
 
-    /* Features Section */
+    /* Secțiune Facilități */
     .features-section {
       padding: 100px 20px;
       max-width: 1200px;
       margin: 0 auto;
       text-align: center;
     }
-    .features-section h2 { font-size: 36px; margin-bottom: 60px; }
+    .features-section h2 { font-size: 32px; margin-bottom: 60px; }
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -229,9 +226,9 @@
     }
     .feature-icon { font-size: 45px; margin-bottom: 20px; }
     .feature-card h3 { font-size: 22px; margin-bottom: 15px; }
-    .feature-card p { color: #8c9dc7; line-height: 1.6; }
+    .feature-card p { color: #8c9dc7; line-height: 1.6; font-size: 15px; }
 
-    /* --- Advanced Footer --- */
+    /* Footer Avansat & Profesional */
     footer {
       background: rgba(10, 13, 25, 0.95);
       border-top: 1px solid rgba(140, 248, 255, 0.15);
@@ -251,13 +248,13 @@
        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
        margin-bottom: 15px; font-size: 28px; font-weight: 800;
     }
-    .footer-brand p { color: #8c9dc7; line-height: 1.6; max-width: 400px; }
+    .footer-brand p { color: #8c9dc7; line-height: 1.6; max-width: 400px; font-size: 15px; }
     @media (max-width: 768px) { .footer-brand p { margin: 0 auto; } }
 
     .footer-links h4 { color: #fff; margin-bottom: 25px; font-size: 18px; font-weight: 600; }
     .footer-links ul { list-style: none; padding: 0; }
     .footer-links li { margin-bottom: 15px; }
-    .footer-links a { color: #8c9dc7; text-decoration: none; transition: color 0.3s; font-weight: 500; }
+    .footer-links a { color: #8c9dc7; text-decoration: none; transition: color 0.3s; font-weight: 500; font-size: 15px; }
     .footer-links a:hover { color: #8cf8ff; }
     
     .footer-bottom { 
@@ -265,7 +262,7 @@
       display: flex; flex-direction: column; gap: 10px; align-items: center;
     }
 
-    /* Animations */
+    /* Animații */
     @keyframes floatLang {
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-4px) rotate(5deg); }
@@ -283,140 +280,281 @@
 </head>
 <body>
 
-  <!-- Background Stars Animation -->
   <canvas id="bgCanvas"></canvas>
 
-  <!-- Header -->
   <header>
     <div class="logo">PulseBot</div>
     <nav>
-      <a href="#home">Home</a>
-      <a href="#commands">Commands</a>
-      <a href="#about">About</a>
-      <a href="#premium">Premium</a>
+      <a href="#home" data-i18n="navHome">Home</a>
+      <a href="#commands" data-i18n="navCommands">Commands</a>
+      <a href="#about" data-i18n="navAbout">About</a>
+      <a href="#premium" data-i18n="navPremium">Premium</a>
     </nav>
     
-    <!-- English as Default, Arabic Removed, Hindi Added -->
-    <div class="lang-selector" title="Choose Language">
+    <div class="lang-selector" id="current-lang-flag" title="Choose Language">
       🇺🇸
-      <div class="lang-dropdown">
-        <span>🇺🇸 EN</span>
-        <span>🇷🇴 RO</span>
-        <span>🇪🇸 ES</span>
-        <span>🇫🇷 FR</span>
-        <span>🇩🇪 DE</span>
-        <span>🇮🇹 IT</span>
-        <span>🇵🇹 PT</span>
-        <span>🇷🇺 RU</span>
-        <span>🇯🇵 JP</span>
-        <span>🇮🇳 HI</span>
+      <div class="lang-dropdown" id="lang-dropdown-list">
+        <span data-lang="en">🇺🇸 EN</span>
+        <span data-lang="ro">🇷🇴 RO</span>
+        <span data-lang="es">🇪🇸 ES</span>
+        <span data-lang="fr">🇫🇷 FR</span>
+        <span data-lang="de">🇩🇪 DE</span>
+        <span data-lang="it">🇮🇹 IT</span>
+        <span data-lang="pt">🇵🇹 PT</span>
+        <span data-lang="ru">🇷🇺 RU</span>
+        <span data-lang="jp">🇯🇵 JP</span>
+        <span data-lang="hi">🇮🇳 HI</span>
       </div>
     </div>
   </header>
 
-  <!-- Main Content -->
   <main id="home">
     
-    <!-- Hero Section -->
     <section class="hero-section">
       <div class="hero-card">
-        <h1>Next-Gen Discord Experience</h1>
-        <p>Manage your community seamlessly with the most advanced, fast, and reliable bot ever built. Moderation, economy, music, and much more, all in one package.</p>
+        <h1 data-i18n="heroTitle">A Helping Hand for Your Community</h1>
+        <p data-i18n="heroDesc">Manage your Discord server with easy-to-use tools for moderation, music, and setup. Built to be simple, reliable, and close to your community's needs.</p>
         <div class="actions">
-          <a href="#" class="btn primary">Invite PulseBot</a>
-          <a href="#" class="btn secondary">Join Support Server</a>
+          <a href="#" class="btn primary" data-i18n="inviteBtn">Add to Discord</a>
+          <a href="#" class="btn secondary" data-i18n="supportBtn">Support Server</a>
         </div>
       </div>
     </section>
 
-    <!-- Stats Section -->
     <section class="stats-section">
       <div class="stat-item">
         <h3>15K+</h3>
-        <p>Servers</p>
+        <p data-i18n="statServers">Servers</p>
       </div>
       <div class="stat-item">
         <h3>2.5M</h3>
-        <p>Users</p>
+        <p data-i18n="statUsers">Active Users</p>
       </div>
       <div class="stat-item">
         <h3>99.9%</h3>
-        <p>Uptime</p>
+        <p data-i18n="statUptime">Uptime</p>
       </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features-section" id="about">
-      <h2>Why choose PulseBot?</h2>
+      <h2 data-i18n="featTitle">What PulseBot brings to your server</h2>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">🛡️</div>
-          <h3>Advanced Moderation</h3>
-          <p>Keep your server safe automatically. Anti-spam, auto-mod, detailed logging, and easy-to-use commands for your staff.</p>
+          <h3 data-i18n="feat1Title">Server Management</h3>
+          <p data-i18n="feat1Desc">Simple moderation tools and logs to keep your community safe and organized without complex setups.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🎵</div>
-          <h3>Premium Audio</h3>
-          <p>Listen to your favorite tracks with highest quality audio. Support for multiple platforms with zero lag and 24/7 mode available.</p>
+          <h3 data-i18n="feat2Title">Music Channels</h3>
+          <p data-i18n="feat2Desc">Share and listen to high-quality tracks with your friends in voice channels, stable and easy to control.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">⚙️</div>
-          <h3>Fully Customizable</h3>
-          <p>Every single module can be tweaked to your liking. Disable what you don't need, configure what you do. Total freedom.</p>
+          <h3 data-i18n="feat3Title">Tailored for You</h3>
+          <p data-i18n="feat3Desc">Toggle modules on or off based on your server's style. You decide exactly what features you want to use.</p>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- Discord Floating Widget -->
   <a href="#" class="floating-discord" title="Join our Support Server!">
     👾
   </a>
 
-  <!-- Advanced Footer -->
   <footer>
     <div class="footer-container">
       <div class="footer-brand">
         <h2>PulseBot</h2>
-        <p>Elevating communities across Discord. Built with performance, security, and user experience in mind. Join thousands of servers trusting PulseBot today.</p>
+        <p data-i18n="footerDesc">Supporting communities across Discord with practical tools and reliable performance. Built to make server management simple for everyone.</p>
       </div>
       <div class="footer-links">
         <h4>Navigation</h4>
         <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#commands">Commands</a></li>
-          <li><a href="#premium">Premium</a></li>
-          <li><a href="#">Web Dashboard</a></li>
+          <li><a href="#home" data-i18n="navHome">Home</a></li>
+          <li><a href="#commands" data-i18n="navCommands">Commands</a></li>
+          <li><a href="#premium" data-i18n="navPremium">Premium</a></li>
+          <li><a href="#">Dashboard</a></li>
         </ul>
       </div>
       <div class="footer-links">
-        <h4>Legal & Support</h4>
+        <h4>Support & Legal</h4>
         <ul>
-          <li><a href="#">Support Server</a></li>
-          <li><a href="#">Terms of Service (TOS)</a></li>
+          <li><a href="#" data-i18n="supportBtn">Support Server</a></li>
+          <li><a href="#">Terms of Service</a></li>
           <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Refund Policy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>&copy; 2026 PulseBot. All rights reserved.</span>
-      <span>Designed with 💙 for Discord Communities.</span>
+      <span>Built with care for public communities.</span>
     </div>
   </footer>
 
   <script>
     // ==========================================
-    // 1. GENERARE FAVICON NATIV (Logo-ul tau "A")
+    // DICTIONAR DE TRADUCERI (Uman, Natural, Modest)
+    // ==========================================
+    const translations = {
+      en: {
+        navHome: "Home", navCommands: "Commands", navAbout: "About", navPremium: "Premium",
+        heroTitle: "A Helping Hand for Your Community",
+        heroDesc: "Manage your Discord server with easy-to-use tools for moderation, music, and setup. Built to be simple, reliable, and close to your community's needs.",
+        inviteBtn: "Add to Discord", supportBtn: "Support Server",
+        statServers: "Servers", statUsers: "Active Users", statUptime: "Uptime",
+        featTitle: "What PulseBot brings to your server",
+        feat1Title: "Server Management", feat1Desc: "Simple moderation tools and logs to keep your community safe and organized without complex setups.",
+        feat2Title: "Music Channels", feat2Desc: "Share and listen to high-quality tracks with your friends in voice channels, stable and easy to control.",
+        feat3Title: "Tailored for You", feat3Desc: "Toggle modules on or off based on your server's style. You decide exactly what features you want to use.",
+        footerDesc: "Supporting communities across Discord with practical tools and reliable performance. Built to make server management simple for everyone."
+      },
+      ro: {
+        navHome: "Acasă", navCommands: "Comenzi", navAbout: "Despre", navPremium: "Premium",
+        heroTitle: "Un ajutor de încredere pentru comunitatea ta",
+        heroDesc: "Gestionează-ți serverul de Discord cu instrumente simple pentru moderare, muzică și configurare. Creat să fie accesibil, stabil și adaptat nevoilor voastre.",
+        inviteBtn: "Adaugă pe Discord", supportBtn: "Server de Suport",
+        statServers: "Servere", statUsers: "Utilizatori Activi", statUptime: "Timp Online",
+        featTitle: "Cu ce te poate ajuta PulseBot",
+        feat1Title: "Organizare și Siguranță", feat1Desc: "Unelte simple de moderare și istoric de activitate pentru a păstra comunitatea sigură, fără bătăi de cap.",
+        feat2Title: "Muzică în Canale", feat2Desc: "Ascultă piesele preferate alături de prieteni în canalele vocale, cu un control simplu și conexiune stabilă.",
+        feat3Title: "Adaptat stilului tău", feat3Desc: "Activează doar modulele de care ai nevoie. Tu alegi exact ce funcții se potrivesc comunității tale.",
+        footerDesc: "Susținem comunitățile de pe Discord prin unelte practice și performanță stabilă. Creat pentru a face gestionarea serverelor mai simplă."
+      },
+      es: {
+        navHome: "Inicio", navCommands: "Comandos", navAbout: "Acerca de", navPremium: "Premium",
+        heroTitle: "Una mano amiga para tu comunidad",
+        heroDesc: "Gestiona tu servidor de Discord con herramientas sencillas de moderación, música y configuración. Pensado para ser confiable y cercano a tus necesidades.",
+        inviteBtn: "Añadir a Discord", supportBtn: "Servidor de Soporte",
+        statServers: "Servidores", statUsers: "Usuarios Activos", statUptime: "Tiempo en línea",
+        featTitle: "Cómo te ayuda PulseBot",
+        feat1Title: "Moderación y Orden", feat1Desc: "Herramientas prácticas para mantener tu comunidad segura y organizada sin complicaciones.",
+        feat2Title: "Música de Calidad", feat2Desc: "Escucha tus canciones favoritas con amigos en canales de voz, de forma estable y sencilla.",
+        feat3Title: "A tu medida", feat3Desc: "Activa o desactiva los módulos según el estilo de tu servidor. Tú decides qué funciones usar.",
+        footerDesc: "Apoyando a las comunidades de Discord con herramientas prácticas. Diseñado para simplificar la gestión de servidores."
+      },
+      fr: {
+        navHome: "Accueil", navCommands: "Commandes", navAbout: "À propos", navPremium: "Premium",
+        heroTitle: "Un coup de main pour votre communauté",
+        heroDesc: "Gerez votre serveur Discord avec des outils simples de modération, de musique et de configuration. Conçu pour être fiable et adapté à vos besoins.",
+        inviteBtn: "Ajouter à Discord", supportBtn: "Serveur de Support",
+        statServers: "Serveurs", statUsers: "Utilisateurs Actifs", statUptime: "Temps en ligne",
+        featTitle: "Comment PulseBot vous aide",
+        feat1Title: "Modération & Sécurité", feat1Desc: "Des outils simples pour garder votre communauté accueillante et organisée sans configurations complexes.",
+        feat2Title: "Musique en Salon", feat2Desc: "Écoutez vos morceaux préférés avec vos amis en salon vocal, avec une connexion stable et fluide.",
+        feat3Title: "Adapté à vos besoins", feat3Desc: "Activez uniquement les modules nécessaires. Vous choisissez ce qui convient le mieux à votre serveur.",
+        footerDesc: "Accompagner les communautés sur Discord avec des outils pratiques. Pensé pour rendre la gestion simple pour tous."
+      },
+      de: {
+        navHome: "Startseite", navCommands: "Befehle", navAbout: "Über uns", navPremium: "Premium",
+        heroTitle: "Eine helfende Hand für deine Community",
+        heroDesc: "Verwalte deinen Discord-Server mit einfachen Tools für Moderation, Musik und Einrichtung. Zuverlässig, übersichtlich und nah an deinen Bedürfnissen.",
+        inviteBtn: "Zu Discord hinzufügen", supportBtn: "Support-Server",
+        statServers: "Server", statUsers: "Aktive Nutzer", statUptime: "Online-Zeit",
+        featTitle: "Wie PulseBot dir hilft",
+        feat1Title: "Moderation & Ordnung", feat1Desc: "Einfache Funktionen, um deine Community sicher und organisiert zu halten, ganz ohne Stress.",
+        feat2Title: "Musik im Voice-Channel", feat2Desc: "Höre deine Lieblingslieder zusammen mit Freunden im Sprachkanal, stabil und leicht zu bedienen.",
+        feat3Title: "Flexibel anpassbar", feat3Desc: "Schalte Module nach Belieben ein oder aus. Du entscheidest, welche Funktionen zu deinem Server passen.",
+        footerDesc: "Unterstützung von Discord-Communitys durch praktische Tools. Entwickelt, um die Serververwaltung für jeden einfacher zu machen."
+      },
+      it: {
+        navHome: "Home", navCommands: "Comandi", navAbout: "Info", navPremium: "Premium",
+        heroTitle: "Una mano colma d'aiuto per la tua community",
+        heroDesc: "Gestisci il tuo server Discord con strumenti semplici per moderazione, musica e configurazione. Creato per essere affidabile e vicino alle tue esigenze.",
+        inviteBtn: "Aggiungi a Discord", supportBtn: "Server di Supporto",
+        statServers: "Server", statUsers: "Utenti Attivi", statUptime: "Tempo attività",
+        featTitle: "Come PulseBot ti aiuta",
+        feat1Title: "Moderazione e Sicurezza", feat1Desc: "Strumenti pratici per mantenere la tua community sicura e organizzata senza complicazioni.",
+        feat2Title: "Musica nei Canali", feat2Desc: "Ascolta i tuoi brani preferiti con gli amici nei canali vocali, con una connessione stabile.",
+        feat3Title: "Su misura per te", feat3Desc: "Attiva o disattiva i moduli in base allo stile del tuo server. Decidi tu quali funzioni utilizzare.",
+        footerDesc: "Supportiamo le community di Discord con strumenti pratici. Progettato per rendere la gestione dei server semplice per tutti."
+      },
+      pt: {
+        navHome: "Início", navCommands: "Comandos", navAbout: "Sobre", navPremium: "Premium",
+        heroTitle: "Uma mão amiga para a sua comunidade",
+        heroDesc: "Gerencie seu servidor do Discord com ferramentas simples de moderação, música e configuração. Feito para ser confiável e próximo das suas necessidades.",
+        inviteBtn: "Adicionar ao Discord", supportBtn: "Servidor de Suporte",
+        statServers: "Servidores", statUsers: "Usuários Ativos", statUptime: "Tempo online",
+        featTitle: "Como o PulseBot ajuda",
+        feat1Title: "Moderação e Organização", feat1Desc: "Ferramentas práticas para manter sua comunidade segura e organizada sem complicações.",
+        feat2Title: "Música de Qualidade", feat2Desc: "Ouça suas músicas favoritas com amigos nos canais de voz de forma estável e fácil.",
+        feat3Title: "Do seu jeito", feat3Desc: "Ative ou desative os módulos conforme o estilo do seu servidor. Você escolhe o que usar.",
+        footerDesc: "Apoiando comunidades no Discord com ferramentas práticas. Criado para tornar a gestão de servidores simples para todos."
+      },
+      ru: {
+        navHome: "Главная", navCommands: "Команды", navAbout: "О боте", navPremium: "Premium",
+        heroTitle: "Надёжный помощник для вашего сервера",
+        heroDesc: "Управляйте сервером Discord с помощью простых инструментов модерации, музыки и настройки. Создан быть понятным, стабильным и удобным.",
+        inviteBtn: "Добавить в Discord", supportBtn: "Сервер поддержки",
+        statServers: "Серверы", statUsers: "Активные пользователи", statUptime: "Время работы",
+        featTitle: "Чем поможет PulseBot",
+        feat1Title: "Модерация и порядок", feat1Desc: "Простые инструменты для защиты и организации вашего сообщества без сложных настроек.",
+        feat2Title: "Музыка в каналах", feat2Desc: "Слушайте любимые треки вместе с друзьями в голосовых каналах со стабильным качеством.",
+        feat3Title: "Настройка под себя", feat3Desc: "Включайте только те модули, которые вам нужны. Вы сами выбираете функции для своего сервера.",
+        footerDesc: "Помогаем сообществам в Discord простыми и надёжными инструментами. Сделано, чтобы управление сервером было доступно каждому."
+      },
+      jp: {
+        navHome: "ホーム", navCommands: "コマンド", navAbout: "詳細", navPremium: "Premium",
+        heroTitle: "コミュニティに寄り添うパートナー",
+        heroDesc: "モデレーション、音楽、各種設定など、Discordサーバーをシンプルなツールで管理。使いやすさと安定性を大切にしています。",
+        inviteBtn: "Discordに追加", supportBtn: "サポートサーバー",
+        statServers: "サーバー数", statUsers: "アクティブユーザー", statUptime: "稼働時間",
+        featTitle: "PulseBotの主な機能",
+        feat1Title: "安心のモデレーション", feat1Desc: "複雑な設定なしで、サーバーを安全かつクリーンに保つためのシンプルな管理ツール。",
+        feat2Title: "高音質な音楽再生", feat2Desc: "ボイスチャンネルで友達と一緒に、お気に入りの音楽を安定した環境で楽しめます。",
+        feat3Title: "自由なカスタマイズ", feat3Desc: "サーバーのスタイルに合わせて、必要なモジュールだけを自由に有効化できます。",
+        footerDesc: "実用的なツールでDiscordコミュニティをサポート。誰もが簡単にサーバー管理を行えるように設計されています。"
+      },
+      hi: {
+        navHome: "होम", navCommands: "कमांड्स", navAbout: "के बारे में", navPremium: "Premium",
+        heroTitle: "आपकी कम्युनिटी के लिए एक मददगार साथी",
+        heroDesc: "मॉडरेशन, म्यूज़िक और सेटअप के लिए आसान टूल्स के साथ अपने डिस्कॉर्ड सर्वर को संभालें। इसे सरल, भरोसेमंद और आपकी ज़रूरतों के हिसाब से बनाया गया है।" ,
+        inviteBtn: "डिस्कॉर्ड में जोड़ें", supportBtn: "सपोर्ट सर्वर",
+        statServers: "सर्वर", statUsers: "सक्रिय उपयोगकर्ता", statUptime: "अपटाइम",
+        featTitle: "PulseBot आपकी कैसे मदद करता है",
+        feat1Title: "मॉडरेशन और सुरक्षा", feat1Desc: "बिना किसी जटिल सेटअप के अपनी कम्युनिटी को सुरक्षित और व्यवस्थित रखने के लिए आसान टूल्स।",
+        feat2Title: "वॉइस चैनल में म्यूज़िक", feat2Desc: "स्थिर कनेक्शन और आसान कंट्रोल के साथ वॉइस चैनल में दोस्तों के साथ अपने पसंदीदा गानों का आनंद लें।",
+        feat3Title: "आपकी पसंद के अनुसार", feat3Desc: "अपने सर्वर के स्टाइल के हिसाब से मॉड्यूल्स को चालू या बंद करें। आप खुद तय करें कि आपको कौन से फीचर्स चाहिए।",
+        footerDesc: "प्रैक्टिकल टूल्स के साथ डिस्कॉर्ड कम्युनिटीज़ की मदद करना। सर्वर मैनेजमेंट को हर किसी के लिए आसान बनाने के लिए बनाया गया है।"
+      }
+    };
+
+    const flags = { en: "🇺🇸", ro: "🇷🇴", es: "🇪🇸", fr: "🇫🇷", de: "🇩🇪", it: "🇮🇹", pt: "🇵🇹", ru: "🇷🇺", jp: "🇯🇵", hi: "🇮🇳" };
+
+    // Funcția de schimbare limbă
+    function changeLanguage(lang) {
+      if (!translations[lang]) return;
+      
+      // Actualizează elementele text cu atributul data-i18n
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+
+      // Actualizează steagul principal afișat în navbar
+      const mainFlagSelector = document.getElementById("current-lang-flag");
+      mainFlagSelector.childNodes[0].nodeValue = flags[lang] + " ";
+    }
+
+    // Atașează evenimente pe fiecare opțiune din dropdown
+    document.querySelectorAll("#lang-dropdown-list span").forEach(span => {
+      span.addEventListener("click", (e) => {
+        const selectedLang = e.currentTarget.getAttribute("data-lang");
+        changeLanguage(selectedLang);
+      });
+    });
+
+
+    // ==========================================
+    // GENERARE FAVICON NATIV (Logo-ul tău "A")
     // ==========================================
     (function generateFavicon() {
       const cvs = document.createElement('canvas');
-      cvs.width = 128;
-      cvs.height = 128;
+      cvs.width = 128; cvs.height = 128;
       const ctx = cvs.getContext('2d');
-      
-      // Scalăm funcțiile tale de desenare originale de la 1024 la 128 (Favicon size)
       ctx.scale(128/1024, 128/1024);
 
       function ringGradient() {
@@ -433,70 +571,38 @@
         return g;
       }
 
-      function shadowGlow() {
-        ctx.shadowColor = 'rgba(104, 188, 255, 0.4)';
-        ctx.shadowBlur = 30;
-      }
-
-      // Desenare inel (Ring)
       ctx.save();
-      shadowGlow();
-      ctx.beginPath();
-      ctx.arc(512, 512, 380, 0, Math.PI * 2);
-      ctx.strokeStyle = ringGradient();
-      ctx.lineWidth = 42;
-      ctx.lineCap = 'round';
-      ctx.stroke();
+      ctx.shadowColor = 'rgba(104, 188, 255, 0.4)'; ctx.shadowBlur = 30;
+      ctx.beginPath(); ctx.arc(512, 512, 380, 0, Math.PI * 2);
+      ctx.strokeStyle = ringGradient(); ctx.lineWidth = 42; ctx.lineCap = 'round'; ctx.stroke();
 
-      ctx.shadowBlur = 0;
-      ctx.beginPath();
-      ctx.arc(512, 512, 380, Math.PI * 0.18, Math.PI * 1.36);
-      ctx.strokeStyle = 'rgba(255,255,255,0.28)';
-      ctx.lineWidth = 10;
-      ctx.lineCap = 'round';
-      ctx.stroke();
+      ctx.shadowBlur = 0; ctx.beginPath(); ctx.arc(512, 512, 380, Math.PI * 0.18, Math.PI * 1.36);
+      ctx.strokeStyle = 'rgba(255,255,255,0.28)'; ctx.lineWidth = 10; ctx.lineCap = 'round'; ctx.stroke();
       ctx.restore();
 
-      // Desenare litera "A"
       ctx.save();
-      shadowGlow();
-      ctx.fillStyle = highlightGradient();
-      ctx.beginPath();
+      ctx.shadowColor = 'rgba(104, 188, 255, 0.4)'; ctx.shadowBlur = 30;
+      ctx.fillStyle = highlightGradient(); ctx.beginPath();
       ctx.moveTo(512, 204); ctx.lineTo(738, 792); ctx.lineTo(650, 792);
       ctx.lineTo(587, 634); ctx.lineTo(437, 634); ctx.lineTo(374, 792);
-      ctx.lineTo(286, 792); ctx.closePath();
-      ctx.fill();
+      ctx.lineTo(286, 792); ctx.closePath(); ctx.fill();
 
       const cut = new Path2D();
       cut.moveTo(512, 320); cut.lineTo(631, 619); cut.lineTo(564, 619);
-      cut.lineTo(512, 481); cut.lineTo(460, 619); cut.lineTo(393, 619);
-      cut.closePath();
+      cut.lineTo(512, 481); cut.lineTo(460, 619); cut.lineTo(393, 619); cut.closePath();
 
       const cross = new Path2D();
-      cross.moveTo(442, 694);
-      cross.quadraticCurveTo(512, 648, 582, 694);
-      cross.quadraticCurveTo(512, 673, 442, 694);
-      cross.closePath();
+      cross.moveTo(442, 694); cross.quadraticCurveTo(512, 648, 582, 694); cross.quadraticCurveTo(512, 673, 442, 694); cross.closePath();
 
       ctx.globalCompositeOperation = 'destination-out';
-      ctx.fill(cut); ctx.fill(cross);
-      ctx.restore();
+      ctx.fill(cut); ctx.fill(cross); ctx.restore();
 
-      ctx.save();
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.lineWidth = 6;
-      ctx.strokeStyle = 'rgba(255,255,255,0.22)';
-      ctx.beginPath(); ctx.moveTo(512, 222); ctx.lineTo(721, 781); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(512, 222); ctx.lineTo(303, 781); ctx.stroke();
-      ctx.restore();
-
-      // Setare Favicon generat in HTML
       document.getElementById('dynamic-favicon').href = cvs.toDataURL('image/png');
     })();
 
 
     // ==========================================
-    // 2. BACKGROUND CANVAS ANIMATION (Stele/Fulgi)
+    // ANIMATIE BACKGROUND CANVAS (Stele/Particule)
     // ==========================================
     const canvas = document.getElementById('bgCanvas');
     const bgCtx = canvas.getContext('2d');
@@ -526,14 +632,12 @@
 
       for (let i = 0; i < particles.length; i++) {
         let p = particles[i];
-
         bgCtx.beginPath();
         bgCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         bgCtx.fillStyle = `rgba(140, 248, 255, ${p.opacity})`;
         bgCtx.fill();
 
         p.y -= p.speedY; 
-        
         if (p.y < 0) {
           p.y = canvas.height;
           p.x = Math.random() * canvas.width;
@@ -543,7 +647,6 @@
         if (p.opacity < 0.1) p.opacity = 0.1;
         if (p.opacity > 0.8) p.opacity = 0.8;
       }
-
       requestAnimationFrame(animateBg);
     }
 
